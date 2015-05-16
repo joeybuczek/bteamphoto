@@ -9,6 +9,11 @@
 </head>
 <body>
   
+  <!-- Menu area -->
+  <% if current_user %>
+    <%= link_to current_user.user_name, user_show_path(current_user) %>
+  <% end %>
+  
   <!-- Client login/out section -->
   <% if current_user %>
     <%= link_to current_user.user_name, edit_user_registration_path %>
