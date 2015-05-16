@@ -2,7 +2,21 @@
 
 
 // Font and text
+p, a, span, label, i, b, button, input {
+  font-family: 'Raleway', san-serif;
+  color: indigo;
+}
 .large-text {
   font-family: 'Raleway', san-serif;
   font-size: 28pt;
 }
+
+// Forms
+input {
+  border: 1px solid #C9B2DA;
+  border-radius: 3px;
+  height: 1.5em;
+  padding: 3px;
+  color: indigo;
+}
+

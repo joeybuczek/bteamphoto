@@ -10,9 +10,15 @@
 <body>
   
   <!-- Menu area -->
+  <%= link_to "B-Team Photography", root_path %>
+  
   <% if current_user %>
-    <%= link_to current_user.user_name, user_show_path(current_user) %>
+    <% if current_user.admin? %>
+      <%= link_to "Client Index", users_path %>
+    <% end %>
   <% end %>
+  
+  |
   
   <!-- Client login/out section -->
   <% if current_user %>

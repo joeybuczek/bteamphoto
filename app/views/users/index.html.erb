@@ -1,0 +1,5 @@
+<p class="large-text">Client Index</p>
+
+<% @users.each do |user| %>
+  <%= link_to user.client_name, user %>
+<% end %>
