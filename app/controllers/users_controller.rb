@@ -9,6 +9,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
+  def create
+    @user = User.new(params.require(:user).permit(:client_name, :email, :name_primary))
+    @user.role = 'client'
+    @user.password = 'changeme'
+    @user.save
+    redirect_to request.referrer
+  end
+  
   def update
     @user = User.find(params[:id])
     @user.update_attributes(params.require(:user).permit(
@@ -24,6 +32,14 @@ class UsersController < ApplicationController
       :phone_home,
       :phone_cell
       ))
+    redirect_to request.referrer
+  end
+  
+  def destroy
+    @user = User.find(params[:format])
+    unless @user == User.first
+      @user.destroy
+    end
     redirect_to request.referrer
   end
   

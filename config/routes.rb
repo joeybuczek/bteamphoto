@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
   get 'about' => 'welcome#about'
   get 'contact' => 'welcome#contact'
-  devise_for :users
-  resources :users, only: [:index, :show, :update]
+  devise_for :users, :path_prefix => 'my' # add prefix to avoid conflicts with admin's user creation
+  resources :users, only: [:index, :show, :update, :create]
+  delete 'delete_client' => 'users#destroy', as: :delete_client
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

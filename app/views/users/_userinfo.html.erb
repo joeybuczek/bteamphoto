@@ -1,0 +1,42 @@
+<%= form_for user do |f| %>
+
+  <p class="medium-text">Personal Details</p>
+
+  <%= f.text_field :name_primary %>
+  <br/>
+  <span>Primary contact (or Bride)</span>
+  <br/>
+  <%= f.text_field :name_secondary %>
+  <br/>
+  <span>Secondary contact (or Groom)</span>
+  <br/>
+  <br/>
+  <%= f.text_field :street_address %>
+  <br/>
+  <span>Street address</span>
+  <br/>
+  <%= f.text_field :city %>
+  <br/>
+  <span>City/Town</span>
+  <br/>
+  <%= f.text_field :state %>
+  <br/>
+  <span>State</span>
+  <br/>
+  <%= f.text_field :zip_code %>
+  <br/>
+  <span>Zip code</span>
+  <br/>
+  <br/>
+  <%= f.text_field :phone_home %>
+  <br/>
+  <span>Home Phone</span>
+  <br/>
+  <%= f.text_field :phone_cell %>
+  <br/>
+  <span>Cell Phone</span>
+  <br/>
+  <br/>
+  <%= f.submit 'Update' %>
+
+<% end %>

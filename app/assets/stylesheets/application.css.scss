@@ -9,6 +9,18 @@ p, a, span, label, i, b, button, input {
 .large-text {
   font-family: 'Raleway', san-serif;
   font-size: 28pt;
+  margin: 20px 0;
+}
+.medium-text {
+  font-family: 'Raleway', san-serif;
+  font-size: 18pt;
+  margin: 20px 0;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  color: #C9B2DA;
 }
 
 // Forms

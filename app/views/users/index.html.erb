@@ -14,7 +14,7 @@
   <br/>
   <span>Primary contact (or Bride)</span>
   <br/><br/>
-  <%= f.submit "Add Client" %>
+  <%= f.submit 'Add Client' %>
 
 <% end %>
 
@@ -23,4 +23,6 @@
 
 <% @users.each do |user| %>
   <%= link_to user.client_name, user %>
+  <%= link_to 'Delete', delete_client_path(user), method: :delete %>
+  <br/><br/>
 <% end %>

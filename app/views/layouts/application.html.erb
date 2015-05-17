@@ -13,8 +13,11 @@
   <%= link_to "B-Team Photography", root_path %>
   
   <% if current_user %>
+    |
     <% if current_user.admin? %>
       <%= link_to "Client Index", users_path %>
+    <% else %>
+      <%= link_to "My Details", current_user %>
     <% end %>
   <% end %>
   
@@ -22,7 +25,8 @@
   
   <!-- Client login/out section -->
   <% if current_user %>
-    <%= link_to current_user.user_name, edit_user_registration_path %>
+    <%= link_to "Change Password", edit_user_registration_path %>
+  |
     <%= link_to "Logout", destroy_user_session_path, method: :delete %>
   <% else %>
     <%= link_to "Client Login", new_user_session_path %>
@@ -30,7 +34,7 @@
 
   <div class="body-container">
   
-    <!-- Disable alerts for now
+<!-- Disable alerts for now 
     <% if flash[:notice] %>
       <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -47,7 +51,7 @@
         <%= flash[:alert] %>
       </div>
     <% end %>
-    -->
+-->
 
     <%= yield %>
     
