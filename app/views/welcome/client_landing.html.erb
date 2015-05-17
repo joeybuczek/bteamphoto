@@ -1,8 +1,24 @@
-<p class="large-text">My Details</p>
+<div class="row">
+  <div class="small-10 small-centered large-6 large-uncentered columns">
 
-<p>Web Galleries</p>
+    <p class="large-text">My Details</p>
 
-<%= link_to "Personal Information", @user %>
+    <p>Web Galleries</p>
 
-<p>Events</p>
+    <p><%= link_to "Personal Information", @user %></p>
+    
+    <div class="panel radius">
+      <span class="subdued-text"> <%= @user.name_primary %> </span><br/>
+      <span class="subdued-text"> <%= @user.name_secondary %> </span><br/><br/>
+      <span class="subdued-text"> <%= @user.street_address %> </span><br/>
+      <span class="subdued-text"> <%= @user.city %>, <%= @user.state %> <%= @user.zip_code %> </span><br/>
+      <span class="subdued-text"> <%= @user.country %> </span><br/><br/>
+      <span class="subdued-text"> <%= @user.email %> </span><br/>
+      <span class="subdued-text"> <%= @user.phone_home %> </span><br/>
+      <span class="subdued-text"> <%= @user.phone_cell %> </span><br/>
+    </div>
 
+    <p>Events</p>
+
+  </div>
+</div>

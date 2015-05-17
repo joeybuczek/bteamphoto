@@ -29,6 +29,7 @@ class UsersController < ApplicationController
       :city,
       :state,
       :zip_code,
+      :country,
       :phone_home,
       :phone_cell
       ))

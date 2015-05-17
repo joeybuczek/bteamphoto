@@ -15,6 +15,9 @@ p, a, span, label, i, b, button, input {
   font-size: 18pt;
   margin: 20px 0;
 }
+.subdued-text {
+  color: #777777;
+}
 a {
   text-decoration: none;
 }
@@ -26,7 +29,7 @@ a:hover {
 input {
   border: 1px solid #C9B2DA;
   border-radius: 3px;
-  height: 1.5em;
+  // height: 1.5em;
   padding: 3px;
   color: indigo;
 }

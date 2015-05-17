@@ -21,13 +21,16 @@
       <span>Zip code:</span>    
       <%= f.text_field :zip_code %>
 
+      <span>Country:</span>    
+      <%= f.text_field :country %>
+
       <span>Home Phone:</span>    
       <%= f.text_field :phone_home %>
 
       <span>Cell Phone:</span>    
       <%= f.text_field :phone_cell %>
 
-      <%= f.submit 'Update' %>
+      <%= f.submit 'Update', class: 'button small radius secondary' %>
 
     <% end %>
   
