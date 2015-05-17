@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(params.require(:user).permit(:client_name, :email, :name_primary))
     @user.role = 'client'
     @user.password = 'changeme'
+    @user.password_confirmation = 'changeme'
     @user.save
     redirect_to request.referrer
   end
