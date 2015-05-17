@@ -1,28 +1,31 @@
-<p class="large-text">Add Client</p>
+<div class="row">
+  <div class="small-10 small-centered large-6 large-uncentered columns">
 
-<%= form_for @user do |f| %>
+    <p class="large-text">Add Client</p>
 
-  <%= f.text_field :client_name, autofocus: true %>
-  <br/>
-  <span>Client Name</span>
-  <br/>
-  <%= f.email_field :email %>
-  <br/>
-  <span>Email</span>
-  <br/>
-  <%= f.text_field :name_primary %>
-  <br/>
-  <span>Primary contact (or Bride)</span>
-  <br/><br/>
-  <%= f.submit 'Add Client' %>
+    <%= form_for @user do |f| %>
 
-<% end %>
+      <span>Client Name:</span>
+      <%= f.text_field :client_name, autofocus: true %>
+        
+      <span>Email:</span>
+      <%= f.email_field :email %>
 
-<br/>
-<p class="large-text">Client Index</p>
+      <span>Primary contact (or Bride):</span>
+      <%= f.text_field :name_primary %>
 
-<% @users.each do |user| %>
-  <%= link_to user.client_name, user %>
-  <%= link_to 'Delete', delete_client_path(user), method: :delete %>
-  <br/><br/>
-<% end %>
+      <%= f.submit 'Add Client' %>
+
+    <% end %>
+
+    <br/>
+    <p class="large-text">Client Index</p>
+
+    <% @users.each do |user| %>
+      <%= link_to user.client_name, user %>
+      <%= link_to 'Delete', delete_client_path(user), method: :delete %>
+      <br/><br/>
+    <% end %>
+    
+  </div>
+</div>

@@ -1,42 +1,33 @@
-<%= form_for user do |f| %>
+    
+    <%= form_for user do |f| %>
 
-  <p class="medium-text">Personal Details</p>
+      <p class="medium-text">Personal Details</p>
 
-  <%= f.text_field :name_primary %>
-  <br/>
-  <span>Primary contact (or Bride)</span>
-  <br/>
-  <%= f.text_field :name_secondary %>
-  <br/>
-  <span>Secondary contact (or Groom)</span>
-  <br/>
-  <br/>
-  <%= f.text_field :street_address %>
-  <br/>
-  <span>Street address</span>
-  <br/>
-  <%= f.text_field :city %>
-  <br/>
-  <span>City/Town</span>
-  <br/>
-  <%= f.text_field :state %>
-  <br/>
-  <span>State</span>
-  <br/>
-  <%= f.text_field :zip_code %>
-  <br/>
-  <span>Zip code</span>
-  <br/>
-  <br/>
-  <%= f.text_field :phone_home %>
-  <br/>
-  <span>Home Phone</span>
-  <br/>
-  <%= f.text_field :phone_cell %>
-  <br/>
-  <span>Cell Phone</span>
-  <br/>
-  <br/>
-  <%= f.submit 'Update' %>
+      <span>Primary contact (or Bride):</span>
+      <%= f.text_field :name_primary %>
 
-<% end %>
+      <span>Secondary contact (or Groom):</span>
+      <%= f.text_field :name_secondary %>
+
+      <span>Street address:</span>
+      <%= f.text_field :street_address %>
+
+      <span>City/Town:</span>
+      <%= f.text_field :city %>
+
+      <span>State:</span>
+      <%= f.text_field :state %>
+
+      <span>Zip code:</span>    
+      <%= f.text_field :zip_code %>
+
+      <span>Home Phone:</span>    
+      <%= f.text_field :phone_home %>
+
+      <span>Cell Phone:</span>    
+      <%= f.text_field :phone_cell %>
+
+      <%= f.submit 'Update' %>
+
+    <% end %>
+  

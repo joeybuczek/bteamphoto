@@ -1,3 +1,8 @@
-<p class="large-text"><%= @user.client_name %></p>
-
-<%= render partial: 'userinfo', locals: { user: @user } %>
+<div class="row">
+  <div class="small-10 small-centered large-6 large-uncentered columns">
+    
+    <!-- <p class="large-text"><%= @user.client_name %></p> -->
+    <%= render partial: 'userinfo', locals: { user: @user } %>
+    
+  </div>
+</div>
