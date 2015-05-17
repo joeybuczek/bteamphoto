@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
   get 'about' => 'welcome#about'
   get 'contact' => 'welcome#contact'
+  get 'client_landing' => 'welcome#client_landing'
   devise_for :users, :path_prefix => 'my' # add prefix to avoid conflicts with admin's user creation
   resources :users, only: [:index, :show, :update, :create]
   delete 'delete_client' => 'users#destroy', as: :delete_client

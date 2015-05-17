@@ -7,4 +7,8 @@ class WelcomeController < ApplicationController
 
   def contact
   end
+  
+  def client_landing
+    @user = current_user
+  end
 end

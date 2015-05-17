@@ -8,4 +8,10 @@ class ApplicationController < ActionController::Base
     redirect_to request.referrer, alert: exception.message
   end
   
+  protected
+
+  def after_sign_in_path_for(resource)
+    resource.admin? ? users_path : client_landing_path(resource)
+  end
+  
 end
