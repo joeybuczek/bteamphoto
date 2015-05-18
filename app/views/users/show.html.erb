@@ -1,8 +1,15 @@
 <div class="row">
   <div class="small-10 small-centered large-6 large-uncentered columns">
     
-    <!-- <p class="large-text"><%= @user.client_name %></p> -->
     <%= render partial: 'userinfo', locals: { user: @user } %>
+    
+    <% if current_user.admin? %>
+      <%= link_to 'Back to Client Index', users_path %>
+    <% else %>
+      <%= link_to 'Back', client_landing_path(current_user) %>
+    <% end %>
+    
+    <br/><br/>
     
   </div>
 </div>

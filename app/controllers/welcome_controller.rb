@@ -10,5 +10,6 @@ class WelcomeController < ApplicationController
   
   def client_landing
     @user = current_user
+    @wedding = @user.wedding
   end
 end

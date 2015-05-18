@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @user = User.new
-    @wedding = User.second.wedding
   end
   
   def show
@@ -40,7 +39,7 @@ class UsersController < ApplicationController
   
   def destroy
     @user = User.find(params[:format])
-    unless @user == User.first
+    unless @user.admin?
       @user.destroy
     end
     redirect_to request.referrer

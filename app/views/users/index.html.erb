@@ -25,7 +25,7 @@
       <%= link_to user.client_name, user %>
        | 
       <% if user.wedding.nil? %>
-        <span>Add Wedding</span>
+        <%= link_to 'Add Wedding', add_wedding_path(user) %>
       <% else %>
         <span><%= link_to 'Wedding Details', wedding_path(user) %></span>
       <% end %>

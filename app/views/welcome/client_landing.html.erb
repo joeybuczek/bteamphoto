@@ -3,22 +3,70 @@
 
     <p class="large-text">My Details</p>
 
-    <p>Web Galleries</p>
+    <!-- <p>Web Galleries</p> -->
 
-    <p><%= link_to "Personal Information", @user %></p>
+    <span>Personal Information:</span><br/>
     
     <div class="panel radius">
+      <span class="subdued-text"> <strong>Contacts:</strong> </span><br/>
       <span class="subdued-text"> <%= @user.name_primary %> </span><br/>
       <span class="subdued-text"> <%= @user.name_secondary %> </span><br/><br/>
+      
+      <span class="subdued-text"> <strong>Address:</strong> </span><br/>
       <span class="subdued-text"> <%= @user.street_address %> </span><br/>
       <span class="subdued-text"> <%= @user.city %>, <%= @user.state %> <%= @user.zip_code %> </span><br/>
       <span class="subdued-text"> <%= @user.country %> </span><br/><br/>
-      <span class="subdued-text"> <%= @user.email %> </span><br/>
+      
+      <span class="subdued-text"> <strong>Email:</strong> </span><br/>
+      <span class="subdued-text"> <%= @user.email %> </span><br/><br/>
+      
+      <span class="subdued-text"> <strong>Phone:</strong> </span><br/>
       <span class="subdued-text"> <%= @user.phone_home %> </span><br/>
-      <span class="subdued-text"> <%= @user.phone_cell %> </span><br/>
+      <span class="subdued-text"> <%= @user.phone_cell %> </span><br/><br/>
+      
+      <%= link_to 'Edit', @user, class: 'button small radius info' %>
     </div>
 
-    <p>Events</p>
+    <% unless current_user.wedding.nil? %>
+    
+      <span>Wedding Information:</span><br/>
+    
+      <div class="panel radius">
+        <span class="subdued-text"> <strong>Bride and Groom:</strong> </span><br/>
+        <span class="subdued-text"> <%= @wedding.bride %> </span><br/>
+        <span class="subdued-text"> <%= @wedding.groom %> </span><br/><br/>
+        
+        <span class="subdued-text"> <strong>Wedding Date:</strong> </span><br/>
+        <span class="subdued-text"> <%= @wedding.date_wedding %> </span><br/><br/>
+
+        <span class="subdued-text"> <strong>Getting Ready Details:</strong> </span><br/>
+        <span class="subdued-text"> Start Time: <%= @wedding.time_getting_ready %> </span><br/>
+        <span class="subdued-text"> Bride: <%= @wedding.location_getting_ready_bride %> </span><br/>
+        <span class="subdued-text"> Groom: <%= @wedding.location_getting_ready_groom %> </span><br/><br/>
+        
+        <span class="subdued-text"> <strong>Ceremony Details:</strong> </span><br/>
+        <span class="subdued-text"> Start Time: <%= @wedding.time_ceremony %> </span><br/>
+        <span class="subdued-text"> Location: <%= @wedding.location_ceremony %> </span><br/><br/>
+        
+        <span class="subdued-text"> <strong>Formals Details:</strong> </span><br/>
+        <span class="subdued-text"> Start Time: <%= @wedding.time_formals %> </span><br/>
+        <span class="subdued-text"> Location: <%= @wedding.location_formals %> </span><br/><br/>
+        
+        <span class="subdued-text"> <strong>Reception Details:</strong> </span><br/>
+        <span class="subdued-text"> Start Time: <%= @wedding.time_receptions %> </span><br/>
+        <span class="subdued-text"> End Time: <%= @wedding.time_end %> </span><br/>
+        <span class="subdued-text"> Location: <%= @wedding.location_reception %> </span><br/><br/>
+
+        <span class="subdued-text"> <strong>Notes and Special Requests:</strong> </span><br/>
+        <span class="subdued-text"> <%= @wedding.notes %> </span><br/><br/>
+
+        <span class="subdued-text"> <strong>Balance Details:</strong> </span><br/>
+        <span class="subdued-text"> Balance due: $<%= @wedding.balance %> </span><br/><br/>
+
+        <%= link_to 'Edit', wedding_path(@user), class: 'button small radius info' %>
+      </div>
+    
+    <% end %>
 
   </div>
 </div>

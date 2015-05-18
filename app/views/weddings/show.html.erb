@@ -3,7 +3,13 @@
     
     <%= render partial: 'weddinginfo', locals: { wedding: @wedding } %>
     
-
+    <% if current_user.admin? %>
+      <%= link_to 'Back to Client Index', users_path %>
+    <% else %>
+      <%= link_to 'Back', client_landing_path(current_user) %>
+    <% end %>
+    
+    <br/><br/>
     
   </div>
 </div>

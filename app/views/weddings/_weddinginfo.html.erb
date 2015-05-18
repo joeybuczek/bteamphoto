@@ -156,7 +156,7 @@
           <% if current_user.admin? %>
             <%= f.number_field :balance %>
           <% else %>
-            <br/><span><%= wedding.balance %></span><br/><br/>
+            <br/><span>$<%= wedding.balance %></span><br/><br/>
           <% end %>
         </div>
       </div>
@@ -168,8 +168,8 @@
           <br/><%= f.submit 'Update', class: 'button small radius secondary' %>
         </div>
       </div>
-    
-      <br/><br/>
+
+    <br/>
 
     <% end %>
   
