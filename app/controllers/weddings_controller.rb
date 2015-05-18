@@ -26,6 +26,7 @@ class WeddingsController < ApplicationController
       :location_getting_ready_bride,
       :location_getting_ready_groom,
       :location_ceremony,
+      :location_formals,
       :location_reception,
       :notes,
       :balance
