@@ -24,6 +24,9 @@ a {
 a:hover {
   color: #C9B2DA;
 }
+.white-text {
+  color: #FFFFFF;
+}
 
 // Forms
 input {
@@ -32,5 +35,32 @@ input {
   // height: 1.5em;
   padding: 3px;
   color: indigo;
+}
+.time-select {
+  display: inline-block;
+}
+.form-clear-float{
+  clear: both;
+  margin-bottom: 0;
+}
+select {
+  width: 30%;
+  margin-right: 2px;
+  float: left;
+}
+.select-date-wrapper{
+  select:first-of-type{
+    width: 45%;
+  }
+  select:nth-of-type(2){
+    width: 20%;
+  }
+  select:last-of-type{
+    margin-right: 0;
+  }
+}
+.form-bg-color {
+  background-color: #EDE6F2;
+  border-radius: 5px;
 }
 

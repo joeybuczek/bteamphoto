@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150516125049) do
+ActiveRecord::Schema.define(version: 20150517151831) do
 
   create_table "users", force: true do |t|
     t.string   "user_name"
@@ -46,5 +46,29 @@ ActiveRecord::Schema.define(version: 20150516125049) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "weddings", force: true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.string   "bride"
+    t.string   "groom"
+    t.string   "location_getting_ready_bride"
+    t.string   "location_getting_ready_groom"
+    t.string   "location_ceremony"
+    t.string   "location_reception"
+    t.string   "location_formals"
+    t.date     "date_wedding"
+    t.time     "time_getting_ready"
+    t.time     "time_ceremony"
+    t.time     "time_receptions"
+    t.time     "time_formals"
+    t.time     "time_end"
+    t.decimal  "balance",                      precision: 8, scale: 2
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "weddings", ["user_id"], name: "index_weddings_on_user_id"
 
 end

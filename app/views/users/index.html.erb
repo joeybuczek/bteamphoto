@@ -23,6 +23,13 @@
 
     <% @users.each do |user| %>
       <%= link_to user.client_name, user %>
+       | 
+      <% if user.wedding.nil? %>
+        <span>Add Wedding</span>
+      <% else %>
+        <span><%= link_to 'Wedding Details', wedding_path(user) %></span>
+      <% end %>
+       | 
       <%= link_to 'Delete', delete_client_path(user), method: :delete %>
       <br/><br/>
     <% end %>

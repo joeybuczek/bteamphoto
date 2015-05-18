@@ -1,0 +1,175 @@
+    
+    <%= form_for wedding do |f| %>
+    
+      <p class="medium-text">Wedding Details</p>
+    
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns">
+          <span>Bride:</span>
+          <%= f.text_field :bride %>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns">
+          <span>Groom:</span>
+          <%= f.text_field :groom %>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns">
+          <p class='form-clear-float'>Wedding Date:</p>
+          <div class="select-date-wrapper">
+            <%= f.date_select :date_wedding, order: [:month, :day, :year] %>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Getting Ready -->
+    
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns">
+          <br/><p>Getting Ready Details</p>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns white-text">
+          <p class='form-clear-float'>Start Time:</p>
+          <%= f.time_select :time_getting_ready, :ampm => true, minute_step: 15, :time_separator => false %>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns">
+          <span>Bride's Location:</span>
+          <%= f.text_field :location_getting_ready_bride %>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns">
+          <span>Groom's Location:</span>
+          <%= f.text_field :location_getting_ready_groom %>
+        </div>
+      </div>
+    
+      <!-- Ceremony -->
+    
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns">
+          <br/><p>Ceremony Details</p>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns white-text">
+          <p class='form-clear-float'>Start Time:</p>
+          <%= f.time_select :time_ceremony, :ampm => true, minute_step: 15, :time_separator => false %>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns">
+          <span>Ceremony Location:</span>
+          <%= f.text_field :location_ceremony %>
+        </div>
+      </div>
+    
+      <!-- Formal Photos -->
+    
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns">
+          <br/><p>Formals Details</p>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns white-text">
+          <p class='form-clear-float'>Start Time:</p>
+          <%= f.time_select :time_formals, :ampm => true, minute_step: 15, :time_separator => false %>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns">
+          <span>Formals Location:</span>
+          <%= f.text_field :location_formals %>
+        </div>
+      </div>
+    
+      <!-- Reception -->
+    
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns">
+          <br/><p>Reception Details</p>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns white-text">
+          <p class='form-clear-float'>Start Time:</p>
+          <%= f.time_select :time_receptions, :ampm => true, minute_step: 15, :time_separator => false %>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns">
+          <span>Reception Location:</span>
+          <%= f.text_field :location_reception %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns white-text">
+          <p class='form-clear-float'>End Time:</p>
+          <%= f.time_select :time_end, :ampm => true, minute_step: 15, :time_separator => false %>
+        </div>
+      </div>
+
+      <!-- Notes -->
+
+      <br/><br/>
+
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns">
+          <p>Notes and Special Requests:</p>
+          <%= f.text_area :notes, rows: 4 %>
+        </div>
+      </div>
+    
+      <!-- Balance -->
+
+      <br/>
+
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns">
+          <br/><p>Balance Details</p>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns">
+          <span>Balance due:</span>    
+          <% if current_user.admin? %>
+            <%= f.number_field :balance %>
+          <% else %>
+            <br/><span><%= wedding.balance %></span><br/><br/>
+          <% end %>
+        </div>
+      </div>
+    
+      <!-- Submit -->
+    
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-uncentered columns">
+          <br/><%= f.submit 'Update', class: 'button small radius secondary' %>
+        </div>
+      </div>
+    
+      <br/><br/>
+
+    <% end %>
+  
