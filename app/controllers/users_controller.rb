@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    @user = User.find(params[:format])
+    @user = User.find(params[:id])
     unless @user.admin?
       @user.destroy
     end

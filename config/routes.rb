@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'contact' => 'welcome#contact'
   get 'client_landing' => 'welcome#client_landing'
   devise_for :users, :path_prefix => 'my' # add prefix to avoid conflicts with admin's user creation
-  resources :users, only: [:index, :show, :update, :create]
+  resources :users, only: [:index, :show, :update, :create, :destroy]
   resources :weddings, only: [:show, :update, :create]
   delete 'delete_client' => 'users#destroy', as: :delete_client
   get 'add_wedding' => 'weddings#create', as: :add_wedding
