@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise  :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable
   has_one :wedding, dependent: :destroy
+  has_many :invitations, dependent: :destroy
   
   # User roles
   def admin?
@@ -11,10 +12,6 @@ class User < ActiveRecord::Base
   
   def client?
     role == 'client'
-  end
-  
-  def guest?
-    role == 'guest'
   end
   
 end

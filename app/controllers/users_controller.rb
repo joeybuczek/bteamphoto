@@ -10,11 +10,19 @@ class UsersController < ApplicationController
   end
   
   def create
+    # create user
     @user = User.new(params.require(:user).permit(:client_name, :email, :name_primary))
     @user.role = 'client'
     @user.password = 'changeme'
     @user.password_confirmation = 'changeme'
-    @user.save
+    if @user.save
+      # create invitation for user - token generated before_create - see model
+      @invitation = @user.invitations.build
+      @invitation.save
+    else
+      flash[:error] = "There was an error creating the user."
+    end
+    
     redirect_to request.referrer
   end
   
@@ -41,8 +49,16 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     unless @user.admin?
       @user.destroy
+    else
+      flash[:error] = "Cannot delete admin account."
     end
     redirect_to request.referrer
+  end
+  
+  private
+  
+  def generate_token
+    return "Generate Token Successful!"
   end
   
 end
