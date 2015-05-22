@@ -13,12 +13,13 @@ class UsersController < ApplicationController
     # create user
     @user = User.new(params.require(:user).permit(:client_name, :email, :name_primary))
     @user.role = 'client'
-    @user.password = 'changeme'
-    @user.password_confirmation = 'changeme'
+    # randomly generated initial password to satisfy validation
+    # new password generated when invitation is sent to user
+    password = SecureRandom.hex(4)
+    @user.password = password
+    @user.password_confirmation = password
     if @user.save
-      # create invitation for user - token generated before_create - see model
-      @invitation = @user.invitations.build
-      @invitation.save
+      # User created successfully
     else
       flash[:error] = "There was an error creating the user."
     end

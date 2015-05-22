@@ -27,7 +27,7 @@
             <% if current_user.admin? %>
               <li><%= link_to "Client Index", users_path %></li>
             <% else %>
-              <li><%= link_to "My Details", client_landing_path(current_user) %></li>
+              <li><%= link_to "My Details", client_landing_path %></li>
             <% end %>
           <% end %>
           <% if current_user %>
@@ -52,20 +52,20 @@
   <div class="body-container">
   
 <!-- Disable alerts for now -->
-    <% if flash[:notice] %>
-      <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <% if flash[:notice] %> 
+      <div data-alert class="alert-box secondary">
         <%= flash[:notice] %>
-      </div>
-    <% elsif flash[:error] %>
-      <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <a href="#" class="close">&times;</a>
+      </div> 
+    <% elsif flash[:error] %>    
+      <div data-alert class="alert-box alert">
         <%= flash[:error] %>
-      </div>
+        <a href="#" class="close">&times;</a>
+      </div>    
     <% elsif flash[:alert] %>
-      <div class="alert alert-warning">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <div data-alert class="alert-box alert">
         <%= flash[:alert] %>
+        <a href="#" class="close">&times;</a>
       </div>
     <% end %>
 

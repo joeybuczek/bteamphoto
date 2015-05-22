@@ -1,6 +1,6 @@
 class WeddingsController < ApplicationController
   def create
-    @user = User.find(params[:format])
+    @user = User.find(params[:id])
     @wedding = Wedding.new(title: @user.client_name, bride: @user.name_primary, groom: @user.name_secondary)
     @wedding.user = @user
     @wedding.save

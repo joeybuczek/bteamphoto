@@ -2,18 +2,24 @@
 
 // Font and text
 p, a, span, label, i, b, button, input {
-  font-family: 'Raleway', san-serif;
+  font-family: 'Raleway', sans-serif;
   color: indigo;
 }
 .large-text {
-  font-family: 'Raleway', san-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 28pt;
   margin: 20px 0;
 }
 .medium-text {
-  font-family: 'Raleway', san-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 18pt;
   margin: 20px 0;
+}
+.temp-password-text {
+  font-family: 'Raleway', sans-serif;
+  font-size: 10pt;
+  color: white;
+  margin-bottom: 0;
 }
 .subdued-text {
   color: #777777;

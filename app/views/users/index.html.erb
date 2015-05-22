@@ -14,7 +14,7 @@
       <span>Primary contact (or Bride):</span>
       <%= f.text_field :name_primary %>
 
-    <%= f.submit 'Add Client/Send Invite', class: 'button small radius secondary' %>
+    <%= f.submit 'Add Client', class: 'button small radius secondary' %>
 
     <% end %>
 
@@ -33,10 +33,14 @@
          | 
         <%= link_to 'Delete', user, method: :delete, data: { confirm: "Are you sure you want to delete client '#{user.client_name}'?" } %>
         <br/>
+        <span><%= user.email %></span>
+        <br/>
         <% unless user.invitations.last.nil? %>
           <%= user.invitations.last.token %>
+        <% else %>
+          <%= link_to 'Send Invitation', send_invitation_path(user) %>
         <% end %>
-        <br/>
+        <br/><br/>
       <% else %>
       <% end %>
     <% end %>

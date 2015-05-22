@@ -1,14 +1,37 @@
 Rails.application.routes.draw do
 
   root to: 'welcome#index'
+  
+  # Welcome controller routes
   get 'about' => 'welcome#about'
   get 'contact' => 'welcome#contact'
   get 'client_landing' => 'welcome#client_landing'
-  devise_for :users, :path_prefix => 'my' # add prefix to avoid conflicts with admin's user creation
+  
+  # Devise/User controller routes
+  #  add prefix to avoid conflicts with admin's user creation
+  #  tell Devise to use the registrations_controller.rb for redirect after updates
+  devise_for :users, :path_prefix => 'my', :controllers => { :registrations => :registrations }
   resources :users, only: [:index, :show, :update, :create, :destroy]
-  resources :weddings, only: [:show, :update, :create]
   delete 'delete_client' => 'users#destroy', as: :delete_client
-  get 'add_wedding' => 'weddings#create', as: :add_wedding
+  get 'change_password_cleanser' => 'users#change_password_cleanser', as: :change_password_cleanser
+  
+  # Wedding controller routes
+  resources :weddings, only: [:show, :update, :create]
+  get 'add_wedding/:id' => 'weddings#create', as: :add_wedding
+  
+  # Invitation controller routes
+  get 'temporary_password_cleanser/:id' => 'invitations#destroy', as: :temporary_password_cleanser
+  get 'confirmation' => 'invitations#confirmation'
+  get 'send_invitation/:id' => 'invitations#create', as: :send_invitation
+
+  
+  
+  
+  
+  
+  
+  
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

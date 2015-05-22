@@ -2,7 +2,15 @@
   <div class="small-10 small-centered large-6 large-uncentered columns">
 
     <p class="large-text">My Details</p>
+    
+    <!-- Invitations/Temporary Password Checker -->
 
+    <% if @user.invitations.count > 0 %> 
+      <div data-alert class="alert-box alert">
+        <p class="temp-password-text">Temporary Password Alert: You can change your password from the menu above. This message will disappear after your password has been changed.</p>
+      </div> 
+    <% end %>
+    
     <!-- <p>Web Galleries</p> -->
 
     <span>Personal Information:</span><br/>
