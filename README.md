@@ -13,6 +13,7 @@ Please be sure to properly update the application helper.rb file, as it contains
  
  - `helper_title_slogan` : Name/Slogan displayed in the web browser's tab.
  
+ 
  ---
 
 **Users/Clients**
