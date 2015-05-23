@@ -3,13 +3,17 @@ by Joey Buczek: Owner, Photographer
 
 Built with Ruby 2.1.2, Rails 4.1.9, Foundation 4.5.4
 
+ ---
+
 **Site Name & Slogans**
 
 Please be sure to properly update the application helper.rb file, as it contains all the helper methods that display the company name and slogans across the site. The methods are listed below:
 
- - `helper_my_business_name` : The the menu bar at the top of the site's page uses this, and anywhere else you designate the name of your business to show up in your views.
+ - `helper_my_business_name` : The menu bar at the top of the site's page uses this, and anywhere else you designate the name of your business to show up in your views.
  
  - `helper_title_slogan` : Name/Slogan displayed in the web browser's tab.
+ 
+ ---
 
 **Users/Clients**
 
