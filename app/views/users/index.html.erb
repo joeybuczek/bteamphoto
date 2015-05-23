@@ -22,27 +22,40 @@
     <p class="large-text">Client Index</p>
 
     <% @users.each do |user| %>
+    
       <% unless user.admin? %>
-        <%= link_to user.client_name, user %>
-         | 
-        <% if user.wedding.nil? %>
-          <%= link_to 'Add Wedding', add_wedding_path(user) %>
-        <% else %>
-          <span><%= link_to 'Wedding Details', wedding_path(user) %></span>
-        <% end %>
-         | 
-        <%= link_to 'Delete', user, method: :delete, data: { confirm: "Are you sure you want to delete client '#{user.client_name}'?" } %>
-        <br/>
-        <span><%= user.email %></span>
-        <br/>
-        <% unless user.invitations.last.nil? %>
-          <%= user.invitations.last.token %>
-        <% else %>
-          <%= link_to 'Send Invitation', send_invitation_path(user) %>
-        <% end %>
-        <br/><br/>
-      <% else %>
+        <table class="table-client-index">
+          <thead>
+            <tr>
+              <th class="table-header-client-index clearfix">         
+                <%= link_to 'Delete', user, method: :delete, data: { confirm: "Are you sure you want to delete client '#{user.client_name}'?" }, class: 'button tiny radius secondary right clear-margin clear-padding' %>
+                <span><%= user.client_name %></span><br/>
+                <span><%= user.email %></span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <% unless user.invitations.last.nil? %>
+                  <span>Token: <%= user.invitations.last.token %></span>
+                <% else %>
+                  <%= link_to 'Send Invitation', send_invitation_path(user) %>
+                <% end %>
+                <br/>
+                <%= link_to "Edit Client Details", user %>
+                <br/>
+                <% if user.wedding.nil? %>
+                  <%= link_to 'Add Wedding', add_wedding_path(user) %>
+                <% else %>
+                <span><%= link_to 'Edit Wedding Details', wedding_path(user) %></span>
+                <% end %>            
+              </td>
+            </tr>
+          </tbody>
+        </table>
       <% end %>
+    
     <% end %>
     
   </div>

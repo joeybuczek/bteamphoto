@@ -10,7 +10,7 @@ class InvitationsController < ApplicationController
     @invitation = @user.invitations.build
     @invitation.save
     # send invitation_email
-    # InvitationMailer.invitation_email(@user, @temporary_password).deliver
+    InvitationMailer.invitation_email(@user, @temporary_password).deliver
     redirect_to request.referrer
   end
   
