@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'charges/create'
+
+  get 'charges/new'
+
   root to: 'welcome#index'
   
   # Welcome controller routes

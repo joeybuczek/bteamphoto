@@ -21,6 +21,8 @@ gem 'pundit'
 gem 'foundation-rails', '5.4.5'
 # Figaro
 gem 'figaro', '1.0'
+# Stripe
+gem 'stripe'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.9'
