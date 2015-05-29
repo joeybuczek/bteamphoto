@@ -10,6 +10,10 @@
  
  - As the admin, I should be able to send an invitation from my Client Index dashboard page. I should also be able to see the status of the invitation (pending until client logs in for the first time).
 
-**3: As a user, I'd like to make secure credit card payments towards my balance (via Stripe).**
+**3: As the admin user, I'd like to create an invoice for a wedding photography event.**
+
+ - I should be able to attach an invoice to a wedding instance that includes a description, balance, and due date. Also, each invoice should have the option of an itemized breakdown, including a tax rate for the client's county.
+
+**4: As a user, I'd like to make secure credit card payments towards my balance (via Stripe).**
 
  - I should be able to access this feature through the "My Details" page.
