@@ -1,0 +1,21 @@
+<%= form_for invoice do |f| %>
+
+  <%= f.hidden_field :parent_type, value: parent_type %>
+  <%= f.hidden_field :parent_id, value: parent_id %>
+
+  <div class="row">
+    <div class="small-10 small-centered large-10 large-uncentered columns">
+      <span>Balance due:</span>    
+      <%= f.number_field :balance %>   
+    </div>
+  </div>
+
+  <!-- Submit -->
+
+  <div class="row">
+    <div class="small-10 small-centered large-10 large-uncentered columns">
+      <br/><%= f.submit 'Update Invoice', class: 'button small radius secondary' %>
+    </div>
+  </div>
+
+<% end %>

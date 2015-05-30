@@ -139,37 +139,13 @@
         </div>
       </div>
     
-      <!-- Balance -->
-
-      <br/>
-
-      <div class="row">
-        <div class="small-10 small-centered large-10 large-uncentered columns">
-          <br/><p>Balance Details</p>
-        </div>
-      </div>
-
-
-      <div class="row">
-        <div class="small-10 small-centered large-10 large-uncentered columns">
-          <span>Balance due:</span>    
-          <% if current_user.admin? %>
-            <%= f.number_field :balance %>
-          <% else %>
-            <br/><span>$<%= wedding.balance %></span><br/><br/>
-          <% end %>
-        </div>
-      </div>
-    
       <!-- Submit -->
     
       <div class="row">
         <div class="small-10 small-centered large-10 large-uncentered columns">
-          <br/><%= f.submit 'Update', class: 'button small radius secondary' %>
+          <br/><%= f.submit 'Update Wedding Details', class: 'button small radius secondary' %>
         </div>
       </div>
-
-    <br/>
 
     <% end %>
   

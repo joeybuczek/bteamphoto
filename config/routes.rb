@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'charges/create'
-
-  get 'charges/new'
-
   root to: 'welcome#index'
   
   # Welcome controller routes
@@ -27,6 +23,9 @@ Rails.application.routes.draw do
   get 'temporary_password_cleanser/:id' => 'invitations#destroy', as: :temporary_password_cleanser
   get 'confirmation' => 'invitations#confirmation'
   get 'send_invitation/:id' => 'invitations#create', as: :send_invitation
+  
+  # Invoices and Charges
+  resources :invoices
 
   
   

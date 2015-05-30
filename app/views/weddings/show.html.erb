@@ -1,7 +1,28 @@
 <div class="row">
   <div class="small-10 small-centered large-6 large-uncentered columns">
     
+    <!-- Wedding Details -->
+    
     <%= render partial: 'weddinginfo', locals: { wedding: @wedding } %>
+    
+    <hr/>
+    
+    <!-- Invoice -->
+    
+    <% if current_user.admin? %>
+      <% if @wedding.invoice.nil? %>
+        <%= render partial: 'invoices/invoiceinfo', locals: { invoice: @invoice, parent_type: "Wedding", parent_id: @wedding.id } %>
+      <% else %>
+        <%= render partial: 'invoices/invoiceinfo', locals: { invoice: @wedding.invoice, parent_type: "Wedding", parent_id: @wedding.id } %>
+      <% end %>
+    <% else %>
+      <span>Balance due: $<%= @wedding.invoice.nil? ? "0" : @wedding.invoice.balance %></span><br/><br/>
+      <%= link_to "Make payment", "#", class: 'button small radius secondary' %>
+    <% end %>
+    
+    <br/><br/>
+    
+    <!-- Back -->
     
     <% if current_user.admin? %>
       <%= link_to 'Back to Client Index', users_path %>

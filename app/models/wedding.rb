@@ -1,4 +1,4 @@
 class Wedding < ActiveRecord::Base
   belongs_to :user 
-  has_many :invoices, as: :invoiceable
+  has_one :invoice, as: :invoiceable
 end
