@@ -16,7 +16,7 @@
         <%= render partial: 'invoices/invoiceinfo', locals: { invoice: @wedding.invoice, parent_type: "Wedding", parent_id: @wedding.id } %>
       <% end %>
     <% else %>
-      <span>Balance due: $<%= @wedding.invoice.nil? ? "0" : @wedding.invoice.balance %></span><br/><br/>
+      <span>Balance due: <%= @wedding.invoice.nil? ? "0" : humanized_money_with_symbol(@wedding.invoice.balance) %></span><br/><br/>
       <%= link_to "Make payment", "#", class: 'button small radius secondary' %>
     <% end %>
     

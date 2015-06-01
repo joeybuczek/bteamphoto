@@ -53,7 +53,9 @@
                 <% else %>
                   <span><%= link_to 'Edit Wedding Details', wedding_path(user) %></span><br/>
                   <% unless user.wedding.invoice.nil? %>
-                    <span>Balance due: $<%= user.wedding.invoice.balance %></span>
+                    <span>Balance due: <%= humanized_money_with_symbol(user.wedding.invoice.balance) %></span>
+                  <% else %>
+                    <span><i>No Invoice Created</i></span>
                   <% end %>
                 <% end %>   
               </td>

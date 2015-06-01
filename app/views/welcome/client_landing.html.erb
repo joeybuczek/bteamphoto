@@ -91,7 +91,7 @@
               <span class="subdued-text"> <%= @wedding.notes %> </span><br/><br/>
 
               <span class="subdued-text"> <strong>Balance Details:</strong> </span><br/>
-              <span class="subdued-text"> Balance due: $<%= @wedding.invoice.nil? ? "0" : @wedding.invoice.balance %> </span><br/><br/>
+              <span class="subdued-text"> Balance due: <%= @wedding.invoice.nil? ? "0" : humanized_money_with_symbol(@wedding.invoice.balance) %> </span><br/><br/>
 
             </td>
           </tr>
