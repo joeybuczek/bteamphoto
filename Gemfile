@@ -23,6 +23,8 @@ gem 'foundation-rails', '5.4.5'
 gem 'figaro', '1.0'
 # Stripe
 gem 'stripe'
+# Money-Rails
+gem 'money-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.9'
