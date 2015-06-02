@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="small-10 small-centered large-6 large-uncentered columns">
+    
+    <p class="large-text"><%= @invoice_event.class.name %> Invoice</p>
+    
+    <p class="panel callout radius">
+      <%= @user.name_primary %><br/>
+      <%= @user.street_address %><br/>
+      <%= @user.city %>, <%= @user.state %> <%= @user.zip_code %><br/>
+    </p>
+    
+    <!-- rename table class to something more re-usabel -->
+    <table class="table-client-index">
+      <thead>
+        <tr>
+          <th class="table-header-client-index clearfix">
+            <span>Description</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <!-- each statement here -->
+        <tr>
+          <td>
+            <span>Example item</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>Example item</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>Balance due: <%= humanized_money_with_symbol(@invoice.balance) %></span>
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+    
+    <br/>
+    <p>Balance due: <%= humanized_money_with_symbol(@invoice.balance) %></p>
+    
+    <br/>
+    <%= link_to "Back", :back %>
+    <br/><br/><br/>
+    
+  </div>
+</div>

@@ -16,7 +16,7 @@ class InvoicesController < ApplicationController
   end
   
   def update
-    # Record type of parent instance
+    # Record type of parent instance (invoiceable_id/type?)
     parent_type = params[:invoice][:parent_type]
     parent_id = params[:invoice][:parent_id]
     
@@ -28,6 +28,18 @@ class InvoicesController < ApplicationController
       @invoice.save
       redirect_to request.referrer
     end
+  end
+  
+  def show
+    @invoice = Invoice.find(params[:id])
+    
+    # User @invoice_event for modularity in show view
+    # Show wedding invoice
+    if @invoice.invoiceable_type == "Wedding"
+      @invoice_event = Wedding.find(@invoice.invoiceable_id)
+      @user = @invoice_event.user
+    end
+
   end
   
   private

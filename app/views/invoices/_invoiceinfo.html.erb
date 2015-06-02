@@ -14,7 +14,10 @@
 
   <div class="row">
     <div class="small-10 small-centered large-10 large-uncentered columns">
-      <br/><%= f.submit 'Update Invoice', class: 'button small radius secondary' %>
+      <br/><%= f.submit 'Update Invoice', class: 'button small radius secondary' %> 
+      <% unless invoice.id.nil? %>
+        <%= link_to "View Invoice", invoice, class: 'button small radius secondary' %>
+      <% end %>
     </div>
   </div>
 
