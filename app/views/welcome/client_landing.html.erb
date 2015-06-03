@@ -13,10 +13,10 @@
     
     <!-- <p>Web Galleries</p> -->
 
-    <table class="table-client-index">
+    <table class="table-width-100">
       <thead>
         <tr>
-          <th class="table-header-client-index clearfix">  
+          <th class="table-header-width-100 clearfix">  
             <%= link_to 'Edit', @user, class: 'button tiny radius secondary right clear-margin clear-padding' %>
             <span>Personal Information</span>
           </th>
@@ -49,10 +49,10 @@
 
     <% unless current_user.wedding.nil? %>
     
-      <table class="table-client-index">
+      <table class="table-width-100">
         <thead>
           <tr>
-            <th class="table-header-client-index clearfix">  
+            <th class="table-header-width-100 clearfix">  
               <%= link_to 'Edit', wedding_path(@user), class: 'button tiny radius secondary right clear-margin clear-padding' %>
               <span>Wedding Information</span>
             </th>
@@ -89,9 +89,6 @@
 
               <span class="subdued-text"> <strong>Notes and Special Requests:</strong> </span><br/>
               <span class="subdued-text"> <%= @wedding.notes %> </span><br/><br/>
-
-              <span class="subdued-text"> <strong>Balance Details:</strong> </span><br/>
-              <span class="subdued-text"> Balance due: <%= @wedding.invoice.nil? ? "0" : humanized_money_with_symbol(@wedding.invoice.balance) %> </span><br/><br/>
 
             </td>
           </tr>

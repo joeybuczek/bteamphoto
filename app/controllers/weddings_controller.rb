@@ -10,7 +10,7 @@ class WeddingsController < ApplicationController
   def show
     @user = User.find(params[:id])
     @wedding = @user.wedding
-    @invoice = Invoice.new
+    @invoice = @wedding.invoices.build
   end
   
   def update

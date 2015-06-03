@@ -7,20 +7,33 @@
     
     <hr/>
     
-    <!-- Invoice -->
+    <!-- Invoices -->
+    
+    <p class="medium-text">Invoices</p>
     
     <% if current_user.admin? %>
-      <% if @wedding.invoice.nil? %>
-        <%= render partial: 'invoices/invoiceinfo', locals: { invoice: @invoice, parent_type: "Wedding", parent_id: @wedding.id } %>
-      <% else %>
-        <%= render partial: 'invoices/invoiceinfo', locals: { invoice: @wedding.invoice, parent_type: "Wedding", parent_id: @wedding.id } %>
-      <% end %>
-    <% else %>
-      <span>Balance due: <%= @wedding.invoice.nil? ? "0.00" : humanized_money_with_symbol(@wedding.invoice.balance) %></span><br/><br/>
-      <% unless @wedding.invoice.nil? %>
-        <%= link_to "Make payment", "#", class: 'button small radius secondary' %> <%= link_to "Invoice Details", @wedding.invoice, class: 'button small radius secondary' %>
+      <%= render partial: 'invoices/invoiceinfo', locals: { invoice: @invoice, invoiceable_id: @wedding.id, invoiceable_type: @wedding.class.name } %>
+      <br/><br/>
+    <% end %>
+    
+    <% @wedding.invoices.each_with_index do |invoice, index| %>
+      <% if index < @wedding.invoices.count %>
+        <%= link_to "Invoice ##{invoice.id}", invoice %><br/>
       <% end %>
     <% end %>
+    
+    <!-- < if current_user.admin? %>
+      < if @wedding.invoice.nil? %>
+        <= render partial: 'invoices/invoiceinfo', locals: { invoice: @invoice } %>
+      < else %>
+        <= render partial: 'invoices/invoiceinfo', locals: { invoice: @wedding.invoice, parent_type: "Wedding", parent_id: @wedding.id } %>
+      < end %>
+    < else %>
+      <span>Balance due: <= @wedding.invoice.nil? ? "0.00" : humanized_money_with_symbol(@wedding.invoice.balance) %></span><br/><br/>
+      < unless @wedding.invoice.nil? %>
+        <= link_to "Make payment", "#", class: 'button small radius secondary' %> <= link_to "Invoice Details", @wedding.invoice, class: 'button small radius secondary' %>
+      < end %>
+    < end %> -->
     
     <br/><br/>
     

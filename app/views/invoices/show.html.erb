@@ -1,41 +1,29 @@
 <div class="row">
   <div class="small-10 small-centered large-6 large-uncentered columns">
     
-    <p class="large-text"><%= @invoice_event.class.name %> Invoice</p>
+    <p class="large-text"><%= @invoice.description %></p>
     
-    <p class="panel callout radius">
-      <%= @user.name_primary %><br/>
-      <%= @user.street_address %><br/>
-      <%= @user.city %>, <%= @user.state %> <%= @user.zip_code %><br/>
+    <p>
+      <span><%= @user.name_primary %></span><br/>
+      <span><%= @user.street_address %></span><br/>
+      <span><%= @user.city %>, <%= @user.state %> <%= @user.zip_code %></span><br/>
     </p>
     
-    <!-- rename table class to something more re-usabel -->
-    <table class="table-client-index">
+    <!-- rename table class to something more re-usable -->
+    <table class="table-width-100">
       <thead>
         <tr>
-          <th class="table-header-client-index clearfix">
+          <th class="table-header-width-75">
             <span>Description</span>
+          </th>
+          <th class="table-header-width-25">
+            <span>Price</span>
           </th>
         </tr>
       </thead>
       <tbody>
         
-        <!-- each statement here -->
-        <tr>
-          <td>
-            <span>Example item</span>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <span>Example item</span>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <span>Balance due: <%= humanized_money_with_symbol(@invoice.balance) %></span>
-          </td>
-        </tr>
+
         
       </tbody>
     </table>
