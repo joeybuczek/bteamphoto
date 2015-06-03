@@ -6,7 +6,9 @@ class InvoicesController < ApplicationController
   end
   
   def update
-
+    @invoice = Invoice.find(params[:id])
+    @invoice.update_attributes(params.require(:invoice).permit(:description))
+    redirect_to request.referrer
   end
   
   def show

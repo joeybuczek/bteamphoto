@@ -9,16 +9,16 @@
     
     <!-- Invoices -->
     
-    <p class="medium-text">Invoices</p>
-    
     <% if current_user.admin? %>
+      <p class="medium-text">Add Invoices</p>
       <%= render partial: 'invoices/invoiceinfo', locals: { invoice: @invoice, invoiceable_id: @wedding.id, invoiceable_type: @wedding.class.name } %>
-      <br/><br/>
     <% end %>
+    
+    <p class="medium-text">Invoices</p>
     
     <% @wedding.invoices.each_with_index do |invoice, index| %>
       <% if index < @wedding.invoices.count %>
-        <%= link_to "Invoice ##{invoice.id}", invoice %><br/>
+    <%= link_to "#{invoice.description}", invoice %><br/>
       <% end %>
     <% end %>
     

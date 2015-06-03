@@ -1,7 +1,23 @@
 <div class="row">
   <div class="small-10 small-centered large-6 large-uncentered columns">
     
-    <p class="large-text"><%= @invoice.description %></p>
+    
+    <% if current_user.admin? %>
+      <p class="large-text">Update Invoice Details</p>
+      <%= form_for @invoice do |f| %>
+        <%= f.text_field :description %>
+        <%= f.submit "Update", class: 'button small radius secondary' %>
+        <!-- Invoiceable params -->
+        <%= f.hidden_field :invoiceable_id, value: @invoice.invoiceable_id %>
+        <%= f.hidden_field :invoiceable_type, value: @invoice.invoiceable_type %>
+      <% end %>
+    <% else %>
+      <p class="large-text"><%= @invoice.description %></p>
+    <% end %>
+    
+    
+    
+    
     
     <p>
       <span><%= @user.name_primary %></span><br/>
@@ -23,13 +39,42 @@
       </thead>
       <tbody>
         
-
+        <!-- each block starts here for items -->
+        <tr>
+          <td>
+            <span>Item description goes here</span>
+          </td>
+          <td>
+            <span>Price</span>
+          </td>
+        </tr>
+        <!-- each block ends here for items -->
+        
+        <tr>
+          <td>
+            <span class="right">Subtotal:</span><br/>
+            <span class="right">Tax:</span><br/>
+            <span class="right">Grand Total:</span><br/>
+          </td>
+          <td>
+            <span>subtotal</span><br/>
+            <span>tax<br/>
+            <span>grandtotal</span><br/>
+          </td>
+        </tr>
         
       </tbody>
+      <tfoot>
+        <tr>
+          <td>
+            <span>Balance due:</span>
+          </td>
+          <td>
+            <span><%= humanized_money_with_symbol(@invoice.balance) %></span>
+          </td>
+        </tr>
+      </tfoot>
     </table>
-    
-    <br/>
-    <p>Balance due: <%= humanized_money_with_symbol(@invoice.balance) %></p>
     
     <br/>
     <%= link_to "Back", :back %>
