@@ -13,7 +13,15 @@
 **3: As the admin user, I'd like to create an invoice for a wedding photography event.**
 
  - I should be able to attach an invoice to a wedding instance that includes a description, balance, and due date. Also, each invoice should have the option of an itemized breakdown, including a tax rate for the client's county.
+ 
+**4: As the admin user, I'd like to set up an invoice for the user's wedding photography event.**
 
-**4: As a user, I'd like to make secure credit card payments towards my balance (via Stripe).**
+ - I should be able to create and update the invoice with the balance due and any itemized listings on the invoice.
+ 
+**5: As a user, I'd like to view the invoice for my wedding photography event.**
+
+ - I should be able to view the invoice balance due along with any itemized listing on the invoice. I should have access to this through my wedding details page.
+
+**6: As a user, I'd like to make secure credit card payments towards my balance (via Stripe).**
 
  - I should be able to access this feature through the "My Details" page.
