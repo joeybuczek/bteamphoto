@@ -18,7 +18,7 @@
     
     <% @wedding.invoices.each_with_index do |invoice, index| %>
       <% if index < @wedding.invoices.count %>
-    <%= link_to "#{invoice.description}", invoice %><br/>
+        <%= link_to "#{invoice.description}", invoice %><br/>
       <% end %>
     <% end %>
     

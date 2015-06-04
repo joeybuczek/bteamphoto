@@ -38,7 +38,7 @@
             <tr>
               <td>
                 <% unless user.invitations.last.nil? %>
-                  <span>Token: <%= user.invitations.last.token %></span>
+                  <span class="subdued-text">Token: <%= user.invitations.last.token %></span>
                 <% else %>
                   <%= link_to 'Send Invitation', send_invitation_path(user), data: { confirm: 'Are you sure you are ready to send the invitation?'} %>
                 <% end %>
@@ -51,7 +51,15 @@
                 <% if user.wedding.nil? %>
                   <%= link_to 'Add Wedding', add_wedding_path(user) %>
                 <% else %>
-                  <span><%= link_to 'Edit Wedding Details', wedding_path(user) %></span><br/>
+                  <span><%= link_to 'View/Edit Wedding Details', user.wedding %></span><br/>
+                  <% unless user.wedding.invoices.nil? %>
+                    <br/><span><strong>Wedding Invoices:</strong></span><br/>
+                    <% user.wedding.invoices.each do |invoice| %>
+                      <%= link_to "#{invoice.description}", invoice %>
+                      <!-- Determine if paid or balance due -->
+                      <span class="subdued-text"><%= invoice.balance > 0 ? " - #{humanized_money_with_symbol(invoice.balance)}" : " - Paid" %></span><br/>
+                    <% end %>
+                  <% end %>
                 <% end %>   
               </td>
             </tr>

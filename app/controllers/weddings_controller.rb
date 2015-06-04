@@ -8,8 +8,8 @@ class WeddingsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @wedding = @user.wedding
+    @wedding = Wedding.find(params[:id])
+    @user = @wedding.user
     @invoice = @wedding.invoices.build
   end
   

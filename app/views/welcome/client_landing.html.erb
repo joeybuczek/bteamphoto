@@ -53,7 +53,7 @@
         <thead>
           <tr>
             <th class="table-header-width-100 clearfix">  
-              <%= link_to 'Edit', wedding_path(@user), class: 'button tiny radius secondary right clear-margin clear-padding' %>
+              <%= link_to 'Edit', @user.wedding, class: 'button tiny radius secondary right clear-margin clear-padding' %>
               <span>Wedding Information</span>
             </th>
           </tr>
@@ -89,6 +89,15 @@
 
               <span class="subdued-text"> <strong>Notes and Special Requests:</strong> </span><br/>
               <span class="subdued-text"> <%= @wedding.notes %> </span><br/><br/>
+              
+              <% unless @wedding.invoices.nil? %>
+                <span class="subdued-text"> <strong>Wedding Invoices:</strong> </span><br/>
+                <% @wedding.invoices.each do |invoice| %>
+                  <span class="subdued-text"> <%= link_to "#{invoice.description}", invoice %> 
+                    <%= invoice.balance > 0 ? " - #{humanized_money_with_symbol(invoice.balance)}" : " - Paid" %></span><br/>
+                <% end %>
+                <br/>
+              <% end %>
 
             </td>
           </tr>
