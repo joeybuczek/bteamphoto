@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'items/create'
+
+  get 'items/destroy'
+
   root to: 'welcome#index'
   
   # Welcome controller routes
@@ -26,6 +30,7 @@ Rails.application.routes.draw do
   
   # Invoices and Charges
   resources :invoices
+  resources :items
 
   
   

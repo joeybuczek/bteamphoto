@@ -17,6 +17,12 @@ class InvoicesController < ApplicationController
     # return user based on the parent class name of the invoice (constantized method)
     @user = @invoice.invoiceable_type.constantize.find(@invoice.invoiceable_id).user
     @parent_type = @invoice.invoiceable_type.constantize.find(@invoice.invoiceable_id)
+    @item = Item.new
+    @items = @invoice.items.all
+    # take the math logic in the view and move it here into the controller
+    @invoice_subtotal = 0
+    @invoice_tax = 8
+    @invoice_grand_total = 12
   end
   
   def destroy

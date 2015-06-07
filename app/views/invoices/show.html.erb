@@ -39,15 +39,39 @@
       <tbody>
         
         <!-- each block starts here for items -->
+        <% @items.each do |item| %>
         <tr>
           <td>
-            <span>Item description goes here</span>
+            <span><%= item.description %> 
+              <% if current_user.admin? %>
+                <%= link_to "Remove", item, method: :delete, class: 'right' %></span>
+              <% end %>
           </td>
           <td>
-            <span>Price</span>
+            <span><%= humanized_money_with_symbol(item.price) %></span>
+            <% @invoice_subtotal = @invoice_subtotal + item.price %>
           </td>
         </tr>
+        <% end %>
         <!-- each block ends here for items -->
+
+        <% if current_user.admin? %>
+          <tr>
+            <td>
+              <%= form_for @item do |f| %>
+                <%= f.hidden_field :invoice_id, value: @invoice.id %>
+                <%= f.label :description %>
+                <%= f.text_field :description %>
+                <%= f.label :price %>
+                <%= f.text_field :price %>
+                <%= f.submit "Add Item", class: 'button tiny radius secondary' %>
+              <% end %>
+            </td>
+            <td>
+              <span></span>
+            </td>
+          </tr>
+        <% end %>
         
         <tr>
           <td>
@@ -56,9 +80,12 @@
             <span class="right">Grand Total:</span><br/>
           </td>
           <td>
-            <span>subtotal</span><br/>
-            <span>tax</span><br/>
-            <span>grandtotal</span><br/>
+            <!-- calc -->
+            <% @invoice_tax = @invoice_subtotal / 10 %>
+            <% @invoice_grand_total = @invoice_subtotal + @invoice_tax %>
+            <span><%= humanized_money_with_symbol(@invoice_subtotal) %></span><br/>
+            <span><%= humanized_money_with_symbol(@invoice_tax) %></span><br/>
+            <span><%= humanized_money_with_symbol(@invoice_grand_total) %></span><br/>
           </td>
         </tr>
         

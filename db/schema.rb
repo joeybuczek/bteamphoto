@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150601014320) do
+ActiveRecord::Schema.define(version: 20150607030548) do
 
   create_table "invitations", force: true do |t|
     t.string   "token"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20150601014320) do
   end
 
   add_index "invoices", ["invoiceable_id", "invoiceable_type"], name: "index_invoices_on_invoiceable_id_and_invoiceable_type"
+
+  create_table "items", force: true do |t|
+    t.string   "description"
+    t.integer  "invoice_id"
+    t.integer  "price_cents"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "items", ["invoice_id"], name: "index_items_on_invoice_id"
 
   create_table "users", force: true do |t|
     t.string   "user_name"
