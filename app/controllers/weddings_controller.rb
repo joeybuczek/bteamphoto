@@ -4,7 +4,7 @@ class WeddingsController < ApplicationController
     @wedding = Wedding.new(title: @user.client_name, bride: @user.name_primary, groom: @user.name_secondary)
     @wedding.user = @user
     @wedding.save
-    redirect_to request.referrer
+    redirect_to @user.wedding
   end
 
   def show
