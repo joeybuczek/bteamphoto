@@ -1,3 +1,4 @@
+require 'bigdecimal'
 class InvoicesController < ApplicationController
   
   def create   
@@ -20,9 +21,19 @@ class InvoicesController < ApplicationController
     @item = Item.new
     @items = @invoice.items.all
     # take the math logic in the view and move it here into the controller
+
+    # sum up item prices for invoice subtotal
     @invoice_subtotal = 0
-    @invoice_tax = 8
-    @invoice_grand_total = 12
+    @items.each do |item|
+      @invoice_subtotal = @invoice_subtotal + item.price
+    end
+
+    # calculate tax on subtotal
+    @tax_rate = BigDecimal.new(".08")
+    @invoice_tax = Money.new((@tax_rate * @invoice_subtotal.to_d) * 100)
+
+    # sum up grand total
+    @invoice_grand_total = @invoice_subtotal + @invoice_tax
   end
   
   def destroy

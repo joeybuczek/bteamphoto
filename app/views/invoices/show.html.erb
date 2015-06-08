@@ -49,13 +49,13 @@
           </td>
           <td>
             <span><%= humanized_money_with_symbol(item.price) %></span>
-            <% @invoice_subtotal = @invoice_subtotal + item.price %>
           </td>
         </tr>
         <% end %>
         <!-- each block ends here for items -->
 
         <% if current_user.admin? %>
+        <!-- Add new items -->
           <tr>
             <td>
               <%= form_for @item do |f| %>
@@ -73,6 +73,7 @@
           </tr>
         <% end %>
         
+        <!-- Totals -->
         <tr>
           <td>
             <span class="right">Subtotal:</span><br/>
@@ -80,9 +81,6 @@
             <span class="right">Grand Total:</span><br/>
           </td>
           <td>
-            <!-- calc -->
-            <% @invoice_tax = @invoice_subtotal / 10 %>
-            <% @invoice_grand_total = @invoice_subtotal + @invoice_tax %>
             <span><%= humanized_money_with_symbol(@invoice_subtotal) %></span><br/>
             <span><%= humanized_money_with_symbol(@invoice_tax) %></span><br/>
             <span><%= humanized_money_with_symbol(@invoice_grand_total) %></span><br/>
