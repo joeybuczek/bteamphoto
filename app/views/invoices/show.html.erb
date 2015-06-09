@@ -44,7 +44,7 @@
           <td>
             <span><%= item.description %> 
               <% if current_user.admin? %>
-                <%= link_to "Remove", item, method: :delete, class: 'right' %></span>
+                <%= link_to "Remove", item, method: :delete, class: 'right label round secondary' %></span>
               <% end %>
           </td>
           <td>

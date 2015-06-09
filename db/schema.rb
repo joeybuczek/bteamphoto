@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150607030548) do
+ActiveRecord::Schema.define(version: 20150608231133) do
 
   create_table "invitations", force: true do |t|
     t.string   "token"
@@ -44,6 +44,14 @@ ActiveRecord::Schema.define(version: 20150607030548) do
   end
 
   add_index "items", ["invoice_id"], name: "index_items_on_invoice_id"
+
+  create_table "tax_rates", force: true do |t|
+    t.string   "county"
+    t.decimal  "rate"
+    t.boolean  "default_rate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "user_name"

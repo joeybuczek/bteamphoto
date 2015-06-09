@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'tax_rate/create'
+
+  get 'tax_rate/destroy'
+
   get 'items/create'
 
   get 'items/destroy'
@@ -28,9 +32,10 @@ Rails.application.routes.draw do
   get 'confirmation' => 'invitations#confirmation'
   get 'send_invitation/:id' => 'invitations#create', as: :send_invitation
   
-  # Invoices and Charges
+  # Invoices, Charges, and Tax Rates
   resources :invoices
   resources :items
+  resources :tax_rates
 
   
   
