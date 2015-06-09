@@ -93,8 +93,8 @@
               <% unless @wedding.invoices.nil? %>
                 <span class="subdued-text"> <strong>Wedding Invoices:</strong> </span><br/>
                 <% @wedding.invoices.each do |invoice| %>
-                  <span class="subdued-text"> <%= link_to "#{invoice.description}", invoice %> 
-                    <%= invoice.balance > 0 ? " - #{humanized_money_with_symbol(invoice.balance)}" : " - Paid" %></span><br/>
+                  <span class="subdued-text"> <%= link_to "#{invoice.description}", invoice %></span> 
+                  <span class="label round info nudge-up-2"><%= invoice.balance > 0 ? "#{humanized_money_with_symbol(invoice.balance)}" : "Paid" %></span><br/>
                 <% end %>
                 <br/>
               <% end %>

@@ -57,7 +57,7 @@
                     <% user.wedding.invoices.each do |invoice| %>
                       <%= link_to "#{invoice.description}", invoice %>
                       <!-- Determine if paid or balance due -->
-                      <span class="subdued-text"><%= invoice.balance > 0 ? " - #{humanized_money_with_symbol(invoice.balance)}" : " - Paid" %></span><br/>
+                      <span class="label round info nudge-up-2"><%= invoice.balance > 0 ? "#{humanized_money_with_symbol(invoice.balance)}" : "Paid" %></span><br/>
                     <% end %>
                   <% end %>
                 <% end %>   
