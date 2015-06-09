@@ -3,6 +3,7 @@ class InvoicesController < ApplicationController
   
   def create   
     @invoice = Invoice.new(params.require(:invoice).permit(:description, :balance, :invoiceable_id, :invoiceable_type))
+    # add default tax_rate
     @invoice.save
     redirect_to @invoice
   end
