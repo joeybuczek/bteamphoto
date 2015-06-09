@@ -35,7 +35,6 @@ Rails.application.routes.draw do
   # Invoices, Charges, and Tax Rates
   resources :invoices
   resources :items
-  resources :tax_rates
 
   
   

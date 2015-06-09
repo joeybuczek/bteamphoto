@@ -6,6 +6,8 @@
       <%= f.text_field :description %> 
       <span>Total Balance Due:</span>    
       <%= f.text_field :balance %>
+      <span>Tax Rate (leave blank if default):</span>
+      <%= f.text_field :tax_rate %>
       
       <!-- invoiceable params -->
       <%= f.hidden_field :invoiceable_id %>
