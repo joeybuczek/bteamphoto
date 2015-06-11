@@ -3,8 +3,7 @@ class InvoicesController < ApplicationController
   
   def create   
     @invoice = Invoice.new(params.require(:invoice).permit(:description, :balance, :invoiceable_id, :invoiceable_type, :tax_rate))
-    # add default tax_rate if none provided
-    if @invoice.tax_rate.nil? then @invoice.tax_rate = default_tax_rate end
+    # default tax rate is set before create if none given (see model)
     @invoice.save
     redirect_to @invoice
   end
@@ -26,9 +25,12 @@ class InvoicesController < ApplicationController
 
     # sum up item prices for invoice subtotal
     @invoice_subtotal = 0
-    @items.each do |item|
-      @invoice_subtotal = @invoice_subtotal + item.price
-    end
+    @items.each { |item| @invoice_subtotal+=item.price }
+
+    # Old method as explanation (06-11-15)
+    # @items.each do |item|
+    #   @invoice_subtotal = @invoice_subtotal + item.price
+    # end
 
     # calculate tax on subtotal
     @invoice_tax = Money.new((@invoice.tax_rate * @invoice_subtotal.to_d) * 100)
@@ -40,12 +42,6 @@ class InvoicesController < ApplicationController
   def destroy
     @invoice = Invoice.find(params[:id]).destroy
     redirect_to users_path
-  end
-
-  private
-
-  def default_tax_rate
-    return ".08"
   end
 
 end
