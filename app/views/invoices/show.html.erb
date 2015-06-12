@@ -17,9 +17,6 @@
     <% else %>
       <p class="large-text">
         <%= @invoice.description %>
-        <% unless @invoice.balance > 0 %>
-          <span class="button small round success nudge-up-10">Paid</span>
-        <% end %>
       </p>
     <% end %>
 
@@ -99,6 +96,11 @@
         <tr>
           <td>
             <span>Balance due:</span>
+            <% if @invoice.balance > 0 %>
+              <%= link_to "Make Payment", new_charge_path(@invoice), class: 'label round secondary right' %>
+            <% else %>
+              <span class="label round success right">Paid</span>
+            <% end %>
           </td>
           <td>
             <span><%= humanized_money_with_symbol(@invoice.balance) %></span>

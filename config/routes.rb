@@ -32,9 +32,11 @@ Rails.application.routes.draw do
   get 'confirmation' => 'invitations#confirmation'
   get 'send_invitation/:id' => 'invitations#create', as: :send_invitation
   
-  # Invoices, Charges, and Tax Rates
+  # Invoices, Charges, Payments
   resources :invoices
   resources :items
+  resources :charges, only: [:create]
+  get 'new_charge/:id' => 'charges#new', as: :new_charge
 
   
   

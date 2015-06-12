@@ -1,5 +1,7 @@
 class ChargesController < ApplicationController
   def create
+    raise
+
     # create customer with unique token
     customer = Stripe::Customer.create(
       email: current_user.email,
@@ -24,10 +26,11 @@ class ChargesController < ApplicationController
   end
 
   def new
+    @invoice = Invoice.find(params[:id])
     @stripe_btn_data = {
       key: "#{ Rails.configuration.stripe[:publishable_key] }",
-      description: "B-Team Photography payment from: #{current_user.email}",
-      amount: 1000
+      description: "B-Team Photo Payment",
+      amount: 10000
     }
   end
 end

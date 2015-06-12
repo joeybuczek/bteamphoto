@@ -1,2 +1,54 @@
-<h1>Charges#new</h1>
-<p>Find me in app/views/charges/new.html.erb</p>
+<script src="https://checkout.stripe.com/checkout.js"></script>
+
+<div class="row">
+  <div class="small-10 small-centered large-6 large-uncentered columns">
+
+	<p class="large-text">Payment</p>
+	<p class="medium-text">
+		<span><%= @invoice.description %></span><br/>
+		<span class="subdued-text">Current balance: <span class="subdued-text" id="invoice_balance"><%= humanized_money_with_symbol(@invoice.balance) %></span></span>
+	</p>
+
+	<div class="row">
+    <div class="large-12 columns">
+      <div class="row collapse">
+      	<span>Enter amount to pay:</span><br/>
+        <div class="small-8 columns">
+          <input id="amount_to_pay" type="number" placeholder="0.00">
+        </div>
+        <div class="small-4 columns">
+          <a id="customButton" href="#" class="button postfix">Submit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  var handler = StripeCheckout.configure({
+    key: 'pk_test_sVG9hm1bSVwQbluGBAX4aWf1',
+    token: function(token) {
+      // Use the token to create the charge with a server-side script.
+      // You can access the token ID with `token.id`
+    }
+  });
+
+  $('#customButton').on('click', function(e) {
+    // Open Checkout with further options
+    var amnt = $("#amount_to_pay").val() * 100
+    handler.open({
+      name: 'B-Team Photography',
+      description: '<%= @invoice.description %>',
+      allowRememberMe: false,
+      amount: amnt
+    });
+    e.preventDefault();
+  });
+
+  // Close Checkout on page navigation
+  $(window).on('popstate', function() {
+    handler.close();
+  });
+</script>
+
+ </div>
+</div>
