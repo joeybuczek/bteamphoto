@@ -32,7 +32,7 @@ class InvoicesController < ApplicationController
     #   @invoice_subtotal = @invoice_subtotal + item.price
     # end
 
-    # calculate tax on subtotal
+    # calculate tax on subtotal (convert decimal calculation to integer for cents)
     @invoice_tax = Money.new((@invoice.tax_rate * @invoice_subtotal.to_d) * 100)
 
     # sum up grand total
