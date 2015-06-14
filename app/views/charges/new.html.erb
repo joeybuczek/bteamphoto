@@ -6,49 +6,23 @@
 	<p class="large-text">Payment</p>
 	<p class="medium-text">
 		<span><%= @invoice.description %></span><br/>
-		<span class="subdued-text">Current balance: <span class="subdued-text" id="invoice_balance"><%= humanized_money_with_symbol(@invoice.balance) %></span></span>
+		<span class="subdued-text">Current balance due: <span class="subdued-text" id="invoice_balance"><%= humanized_money_with_symbol(@invoice.balance) %></span></span>
 	</p>
 
-	<div class="row">
-    <div class="large-12 columns">
-      <div class="row collapse">
-      	<span>Enter amount to pay:</span><br/>
-        <div class="small-8 columns">
-          <input id="amount_to_pay" type="number" placeholder="0.00">
-        </div>
-        <div class="small-4 columns">
-          <a id="customButton" href="#" class="button postfix">Submit</a>
-        </div>
-      </div>
-    </div>
-  </div>
+	<p>To pay the balance due via credit card, click the button below. To pay a different amount, or for other payment arrangements, please contact us at <a href="mailto:bteamphoto@gmail.com">bteamphoto@gmail.com</a>.</p>
 
-  <script>
-  var handler = StripeCheckout.configure({
-    key: 'pk_test_sVG9hm1bSVwQbluGBAX4aWf1',
-    token: function(token) {
-      // Use the token to create the charge with a server-side script.
-      // You can access the token ID with `token.id`
-    }
-  });
-
-  $('#customButton').on('click', function(e) {
-    // Open Checkout with further options
-    var amnt = $("#amount_to_pay").val() * 100
-    handler.open({
-      name: 'B-Team Photography',
-      description: '<%= @invoice.description %>',
-      allowRememberMe: false,
-      amount: amnt
-    });
-    e.preventDefault();
-  });
-
-  // Close Checkout on page navigation
-  $(window).on('popstate', function() {
-    handler.close();
-  });
-</script>
+	<%= form_tag create_charge_path(@invoice) do %>
+   <script 
+		class='stripe-button' src="https://checkout.stripe.com/checkout.js" 
+		data-label="Confirm and Pay with Card"
+   	data-allow-remember-me="false"
+    data-key="<%= @stripe_btn_data[:key] %>"
+    data-name="<%= @stripe_btn_data[:name] %>"
+    data-description="<%= @stripe_btn_data[:description] %>"
+    data-email="<%= @stripe_btn_data[:email] %>"
+    data-amount=<%= @stripe_btn_data[:amount] %> >
+ 	</script>
+ <% end %>
 
  </div>
 </div>

@@ -97,7 +97,7 @@
           <td>
             <span>Balance due:</span>
             <% if @invoice.balance > 0 %>
-              <%= link_to "Make Payment", new_charge_path(@invoice), class: 'label round secondary right' %>
+              <%= link_to "Pay Balance", new_charge_path(@invoice), class: 'label round secondary right' %>
             <% else %>
               <span class="label round success right">Paid</span>
             <% end %>

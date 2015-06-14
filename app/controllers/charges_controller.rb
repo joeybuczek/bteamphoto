@@ -1,6 +1,6 @@
 class ChargesController < ApplicationController
   def create
-    raise
+    @invoice = Invoice.find(params[:id])
 
     # create customer with unique token
     customer = Stripe::Customer.create(
@@ -11,13 +11,14 @@ class ChargesController < ApplicationController
     # create charge (Amount is its own class/model ... or ... pass this value in as argument/params?)
     charge = Stripe::Charge.create(
       customer: customer.id,
-      amount: 1000,
+      amount: @invoice.balance_cents,
       description: "B-Team Photography payment from: #{current_user.email}",
       currency: 'usd'
     )
   
   flash[:notice] = "Payment successfully processed!"
-  redirect_to client_landing_path
+  @invoice.update_attributes(balance_cents: 0)
+  redirect_to @invoice
   
   # catch any errors and go back to payment process page
   rescue Stripe::CardError => e
@@ -29,8 +30,10 @@ class ChargesController < ApplicationController
     @invoice = Invoice.find(params[:id])
     @stripe_btn_data = {
       key: "#{ Rails.configuration.stripe[:publishable_key] }",
-      description: "B-Team Photo Payment",
-      amount: 10000
+      name: "B-Team Photography",
+      description: @invoice.description,
+      email: current_user.email,
+      amount: @invoice.balance_cents
     }
   end
 end
