@@ -33,6 +33,12 @@ a:hover {
 .white-text {
   color: #FFFFFF;
 }
+.justified {
+  text-align: justify;
+}
+.centered {
+  text-align: center;
+}
 
 // Dimensions and Offsets
 .clear-margin {
@@ -43,6 +49,9 @@ a:hover {
 }
 .margin-left-5 {
   margin-left: 5px;
+}
+.margin-top-10 {
+  margin-top: 10px;
 }
 .nudge-up-2 {
   position: relative;
@@ -112,9 +121,13 @@ select {
 .gallery-image {
   width: 100%;
 }
+.test-image {
+  width: 100%;
+  height: 400px;
+}
 #contact-bar {
   background-color: indigo;
-  height: 50px;
+  height: 70px;
   width: 100%;
   padding: 0 20px;
 }
