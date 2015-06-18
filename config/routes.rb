@@ -1,13 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'tax_rate/create'
-
-  get 'tax_rate/destroy'
-
-  get 'items/create'
-
-  get 'items/destroy'
-
   root to: 'welcome#index'
   
   # Welcome controller routes
@@ -38,6 +30,9 @@ Rails.application.routes.draw do
   # resources :charges, only: [:create]
   post 'create_charge/:id' => 'charges#create', as: :create_charge
   get 'new_charge/:id' => 'charges#new', as: :new_charge
+
+  # Images
+  resources :collections, only: [:index, :create, :edit, :update, :destroy]
 
   
   

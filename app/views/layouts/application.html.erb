@@ -26,6 +26,7 @@
           <% if current_user %>
             <% if current_user.admin? %>
               <li><%= link_to "Client Index", users_path %></li>
+              <li><%= link_to "Manage Photos", collections_path %></li>
             <% else %>
               <li><%= link_to "My Details", client_landing_path %></li>
             <% end %>
