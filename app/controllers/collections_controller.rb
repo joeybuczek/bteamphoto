@@ -11,6 +11,8 @@ class CollectionsController < ApplicationController
 
   def edit
   	@collection = Collection.find(params[:id])
+    @images = @collection.images.all
+    @image = Image.new
   end
 
   def update

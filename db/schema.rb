@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618161655) do
+ActiveRecord::Schema.define(version: 20150619040851) do
 
   create_table "collections", force: true do |t|
     t.string   "name"
@@ -20,6 +20,17 @@ ActiveRecord::Schema.define(version: 20150618161655) do
     t.datetime "updated_at"
     t.string   "genre"
   end
+
+  create_table "images", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "genre"
+    t.integer  "collection_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "images", ["collection_id"], name: "index_images_on_collection_id"
 
   create_table "invitations", force: true do |t|
     t.string   "token"

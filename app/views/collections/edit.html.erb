@@ -3,6 +3,7 @@
 
   	<p class="large-text">Edit Collection</p>
 
+    <!-- Update Collection Info -->
   	<%= form_for @collection do |f| %>
 
       <span>Name:</span>
@@ -19,6 +20,33 @@
     <% end %>
 
     <p class="large-text">Photographs</p>
+
+    <!-- Add Photos -->
+    <%= form_for @image do |f| %>
+
+      <span>Name:</span>
+      <%= f.text_field :name %>
+        
+      <span>Description:</span>
+      <%= f.text_field :description %>
+
+      <!-- Inherit genre and id from collection -->
+      <%= f.hidden_field :genre, value: @collection.genre %>
+      <%= f.hidden_field :collection_id, value: @collection.id %>
+
+      <%= f.submit 'Add Photo', class: 'button small radius secondary' %>
+
+    <% end %>
+
+    <!-- List Photos -->
+
+    <% @images.each do |image| %>
+      <p>
+        <img class="thumbnail" src="<%= image.url %>">
+        <br/>
+        <%= link_to 'Delete', image, method: :delete, class: 'label round secondary' %>
+      </p>
+    <% end %>
 
     <br/>
 	  <%= link_to 'Back', collections_path %>

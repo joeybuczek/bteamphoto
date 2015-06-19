@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'images/create'
+
+  get 'images/edit'
+
+  get 'images/update'
+
+  get 'images/destroy'
+
   root to: 'welcome#index'
   
   # Welcome controller routes
@@ -33,6 +41,7 @@ Rails.application.routes.draw do
 
   # Images
   resources :collections, only: [:index, :create, :edit, :update, :destroy]
+  resources :images, only: [:create, :destroy]
 
   
   
