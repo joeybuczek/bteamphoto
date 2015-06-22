@@ -8,6 +8,12 @@ class ImagesController < ApplicationController
   def destroy
   	@image = Image.find(params[:id])
   	@image.destroy
-  	redirect_to request.referrer
+  	# redirect_to request.referrer
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 end

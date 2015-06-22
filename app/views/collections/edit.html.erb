@@ -42,9 +42,9 @@
 
     <% @images.each do |image| %>
       <p>
-        <img class="thumbnail" src="<%= image.url %>">
+        <img id="image-<%= image.id %>" class="thumbnail" src="<%= image.url %>">
         <br/>
-        <%= link_to 'Delete', image, method: :delete, class: 'label round secondary' %>
+        <%= link_to 'Delete', image, method: :delete, class: 'label round secondary', remote: true %>
       </p>
     <% end %>
 
