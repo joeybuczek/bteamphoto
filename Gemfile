@@ -25,6 +25,8 @@ gem 'figaro', '1.0'
 gem 'stripe'
 # Money-Rails
 gem 'money-rails'
+# Active Model Serializers
+gem 'active_model_serializers'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.9'
