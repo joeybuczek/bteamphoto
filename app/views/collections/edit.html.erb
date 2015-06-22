@@ -41,8 +41,8 @@
     <!-- List Photos -->
 
     <% @images.each do |image| %>
-      <p>
-        <img id="image-<%= image.id %>" class="thumbnail" src="<%= image.url %>">
+      <p id="image-<%= image.id %>">
+        <img class="thumbnail" src="<%= image.url %>">
         <br/>
         <%= link_to 'Delete', image, method: :delete, class: 'label round secondary', remote: true %>
       </p>

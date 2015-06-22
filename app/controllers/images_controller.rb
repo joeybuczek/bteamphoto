@@ -1,4 +1,6 @@
 class ImagesController < ApplicationController
+respond_to :html, :js
+
   def create
   	@collection = Collection.find(params[:image][:collection_id])
   	@image = @collection.images.build(params.require(:image).permit(:name, :description, :genre)).save
@@ -7,12 +9,8 @@ class ImagesController < ApplicationController
 
   def destroy
   	@image = Image.find(params[:id])
-  	@image.destroy
-  	# redirect_to request.referrer
-
-    respond_to do |format|
-      format.html
-      format.js
+  	unless @image.destroy
+      flash[:error] = "There was a problem deleting the image."
     end
 
   end

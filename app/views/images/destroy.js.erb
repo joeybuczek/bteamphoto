@@ -1,0 +1,7 @@
+// $('#image-' +<%= @image.id %>).hide();
+
+<% if @image.destroyed? %>
+	$('#image-' +<%= @image.id %>).hide();
+<% else %>
+	$('#image-' +<%= @image.id %>).prepend('<p class="alert-box alert"><%= flash[:error] %></p>');
+<% end %>
