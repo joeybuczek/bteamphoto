@@ -21,3 +21,12 @@
 **5: As a user, I'd like to make a secure credit card payment to pay off my invoice balance (via Stripe).**
 
  - I should be able to access this feature on the invoice page. Once I pay the balance, the invoice should reflect as paid.
+
+**6: As the admin, I'd like to add/remove images and collections of images.**
+
+ - I should be able to add/remove both collections and individual images from those collections through a "Manage Images" page.
+
+**7. As a site visitor, I'd like to view the various photo collections on the site, read about the photographers, and contact them directly.
+
+ - I should be able to visit the main welcome page of the site and view images, content, and contact information. When using my mobile device I should be able to initiate a phone call to the photographer by touching the phone number on the main welcome page (same for email/email address).
+
