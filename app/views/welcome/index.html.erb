@@ -40,30 +40,15 @@
 		</div>
 
 		<!-- Reviews -->
+		<!-- angularjs -->
 		<div ng-app="reviewsApp">
 			<div class="section-reviews wedding">
 				<p class="medium-text">What our clients are saying!</p>
-				<p class="justified">
-
-					<div class="ng-cloak" ng-controller="ReviewsController as ctrl">
+				<div class="ng-cloak" ng-controller="ReviewsController as ctrl">
 						
-						<div>
+						
 
-							<table>
-								<tr>
-									<td>Label</td><td>Done</td>
-								</tr>
-								<tr ng-repeat-start="note in ctrl.notes">
-									<td>{{note.label}}</td><td>{{note.done}}</td>
-								</tr>
-								<tr ng-repeat-end></tr>
-							</table>
-
-						</div>
-
-					</div>
-
-				</p>
+				</div>
 			</div>
 		</div>
 	</div>
