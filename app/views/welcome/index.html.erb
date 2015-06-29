@@ -40,10 +40,28 @@
 		</div>
 
 		<!-- Reviews -->
-		<div>
+		<div ng-app="reviewsApp">
 			<div class="section-reviews wedding">
 				<p class="medium-text">What our clients are saying!</p>
 				<p class="justified">
+
+					<div class="ng-cloak" ng-controller="ReviewsController as ctrl">
+						
+						<div>
+
+							<table>
+								<tr>
+									<td>Label</td><td>Done</td>
+								</tr>
+								<tr ng-repeat-start="note in ctrl.notes">
+									<td>{{note.label}}</td><td>{{note.done}}</td>
+								</tr>
+								<tr ng-repeat-end></tr>
+							</table>
+
+						</div>
+
+					</div>
 
 				</p>
 			</div>
@@ -56,7 +74,7 @@
 			<p class="medium-text">Meet the B's</p>
 			<p class="justified">
 
-				Hello! We are Joey & Allie Buczek, a husband and wife team of professional wedding photographers based in Central New York. Being married ourselves, we know a thing or two about what it takes to make your big day memorable and fun! 
+				Hello! We are Joey and Allie Buczek, a husband and wife team of professional wedding photographers based in Central New York. Being married ourselves, we know a thing or two about what it takes to make your big day memorable and fun! 
 				<br/><br/>
 
 				We believe in going beyond just recording images of your wedding, we re-create the story of your big day in compelling photographs that will make you relive those precious moments. It’s our goal that years from now, when you turn through the pages of your album, those wonderful feelings and emotions you felt will come flooding back to you. 

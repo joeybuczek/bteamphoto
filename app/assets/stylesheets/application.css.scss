@@ -6,6 +6,11 @@
   background-color: grey;
 }
 
+// AngularJS 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 // Font and text
 p, a, span, label, i, b, button, input {
   font-family: 'Raleway', sans-serif;
