@@ -1,5 +1,8 @@
 class WelcomeController < ApplicationController
   def index
+    @collection = Collection.find_by_genre('wedding')
+    @images = @collection.images.all
+
   end
 
   def about

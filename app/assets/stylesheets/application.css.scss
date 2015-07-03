@@ -124,10 +124,15 @@ select {
 }
 
 // Index View
+#gallery-wrapper {
+
+}
+
 #gallery-marker {
   width: 100%;
   height: auto;
   background-color: #C9B2DA;
+  overflow: hidden;
 }
 .gallery-image {
   width: 100%;
