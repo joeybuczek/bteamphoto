@@ -27,6 +27,8 @@ gem 'stripe'
 gem 'money-rails'
 # Active Model Serializers
 gem 'active_model_serializers'
+# Angularjs
+gem 'angular-rails-templates'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.9'
