@@ -43,9 +43,10 @@
 			<div ng-app="reviewsApp">
 				<div class="section-reviews wedding">
 					<p class="medium-text">What our clients are saying!</p>
-					<div class="ng-cloak">
+					<div class="ng-cloak" ng-controller="ReviewsCtrl as ctrl">
 							
-						<p>Review section goes here via AngularJS</p>
+						<a ui-sref="home">Home</a> | <a ui-sref="reviews">Reviews</a>
+						<div ui-view></div>
 
 					</div>
 				</div>
