@@ -72,6 +72,10 @@ a:hover {
   position: relative;
   top: -10px;
 }
+.nudge-down-10 {
+  position: relative;
+  top: 10px;
+}
 
 // Tables
 .table-width-100 {
@@ -136,12 +140,6 @@ select {
 }
 .gallery-image {
   width: 100%;
-  float: left;
-  position: relative;
-}
-.test-image {
-  width: 100%;
-  height: 400px;
 }
 #contact-bar {
   background-color: indigo;
