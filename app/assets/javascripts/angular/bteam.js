@@ -4,25 +4,39 @@ angular
 
 		// config
 		.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
+
 			$urlRouterProvider.otherwise('/wedding');
 
 			$stateProvider
+
+				// wedding photography
 				.state('wedding', {
 					url: '/wedding',
-					templateUrl: '../templates/gallery_wedding.html'
+					views: {
+						'gallery': { templateUrl: '../templates/gallery_wedding.html' },
+						'genre_info': { templateUrl: '../templates/wedding_info.html' },
+						'about': { templateUrl: '../templates/wedding_about.html' }
+					}
 				})
+
+				// children photography
 				.state('children', {
 					url: '/children',
-					templateUrl: '../templates/gallery_children.html'
+					views: {
+						'gallery': { templateUrl: '../templates/gallery_children.html' },
+						'genre_info': { templateUrl: '../templates/children_info.html' },
+						'about': { templateUrl: '../templates/children_about.html' }
+					}
 				})
+				
 		}])
 
 		// gallery controller
-		.controller('GalleryCtrl', GalleryCtrl);
+		.controller('IndexCtrl', IndexCtrl);
 
 
 // controllers
-function GalleryCtrl() {
+function IndexCtrl() {
 	var self = this;
 	this.image_src = "http://bteamphoto.com/images/wedding/SK001.jpg"
 }
