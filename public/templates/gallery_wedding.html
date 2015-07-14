@@ -1,1 +1,8 @@
-<img class="gallery-image" src="http://bteamphoto.com/images/wedding/SK001.jpg">
+<!-- 
+<img class="gallery-image" src="http://bteamphoto.com/images/wedding/SK001.jpg"> 
+-->
+<div ng-controller="GalleryCtrl as ctrl_g">
+	<p> {{ ctrl_g.current_image }} </p>
+	<button ng-click="ctrl_g.prev_image()" class="warning round small">Prev</button>
+	<button ng-click="ctrl_g.next_image()" class="warning round small">Next</button>
+</div>
