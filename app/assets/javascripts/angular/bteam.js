@@ -28,7 +28,7 @@ angular
 						'about': { templateUrl: '../templates/children_about.html' }
 					}
 				})
-				
+
 		}])
 
 		// gallery controller
@@ -36,9 +36,11 @@ angular
 
 
 // controllers
-function IndexCtrl() {
+function IndexCtrl($state) {
 	var self = this;
-	this.image_src = "http://bteamphoto.com/images/wedding/SK001.jpg"
+	this.changeState = function (genre) {
+		$state.go(genre);
+	};
 }
 
 function ReviewsCtrl() {

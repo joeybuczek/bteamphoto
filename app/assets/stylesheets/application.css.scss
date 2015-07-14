@@ -76,6 +76,10 @@ a:hover {
   position: relative;
   top: 10px;
 }
+.nudge-down-15 {
+  position: relative;
+  top: 15px;
+}
 
 // Tables
 .table-width-100 {
@@ -156,6 +160,9 @@ select {
 }
 .contact-bar-phone-number {
   font-size: 24pt;
+}
+.select-genre {
+  width: 160px;
 }
 .wedding {
 

@@ -15,17 +15,20 @@
 
 			<div class="right contact-bar-text">
 				
+				<!-- 
 				<a class="contact-bar-text contact-bar-link nudge-down-10" ui-sref="wedding">Weddings</a>
 				<a class="contact-bar-text contact-bar-link nudge-down-10" ui-sref="children">Children</a>
+				-->
 				
-				<!-- 
-				<div ng-init="genre = 'wedding'">
-					<select ng-model="genre" style="width: 150px;" class="secondary radius nudge-down-10">
+				<div ng-init="ctrl.genre = 'wedding'">
+					<select ng-model="ctrl.genre" 
+							ng-change="ctrl.changeState(ctrl.genre)"
+							class="select-genre secondary radius nudge-down-15">
 						<option value="wedding">Wedding</option>
-						<option value="children">Children</option>
+						<option value="children">Babies/Children</option>
 					</select>
 				</div>
-				-->
+				
 
 			</div>
 
