@@ -31,11 +31,12 @@ angular
 
 		}])
 
-		// gallery controller
-		.controller('IndexCtrl', IndexCtrl);
+		// gallery controller (inject $state)
+		.controller('IndexCtrl', ['$state', IndexCtrl]);
 
 
 // controllers
+// or inject like this: IndexCtrl.$inject = ['$state'];
 function IndexCtrl($state) {
 	var self = this;
 	this.changeState = function (genre) {
