@@ -1,42 +1,45 @@
-// modules
+// modules ==================================================================
 angular
 	.module('indexApp', ['ui.router'])
 
 		// config
-		.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
-
-			$urlRouterProvider.otherwise('/wedding');
-
-			$stateProvider
-
-				// wedding photography
-				.state('wedding', {
-					url: '/wedding',
-					views: {
-						'gallery': { templateUrl: '../templates/gallery_wedding.html' },
-						'genre_info': { templateUrl: '../templates/wedding_info.html' },
-						'about': { templateUrl: '../templates/wedding_about.html' }
-					}
-				})
-
-				// children photography
-				.state('children', {
-					url: '/children',
-					views: {
-						'gallery': { templateUrl: '../templates/gallery_children.html' },
-						'genre_info': { templateUrl: '../templates/children_info.html' },
-						'about': { templateUrl: '../templates/children_about.html' }
-					}
-				})
-
-		}])
+		.config(['$urlRouterProvider', '$stateProvider', IndexConfig])
 
 		// index controller (inject $state)
 		.controller('IndexCtrl', ['$state', IndexCtrl])
 
 		// wedding images controller
-		.controller('GalleryCtrl', [GalleryCtrl]);
+		.controller('GalleryCtrl', ['ImageFactory', GalleryCtrl])
 
+		// image factory
+		.factory('ImageFactory', [ImageFactory]);
+
+
+// module functions =========================================================
+
+// configuration
+function IndexConfig($urlRouterProvider, $stateProvider) {
+	$urlRouterProvider.otherwise('/wedding');
+	$stateProvider
+		// wedding photography
+		.state('wedding', {
+			url: '/wedding',
+			views: {
+				'gallery': { templateUrl: '../templates/gallery_wedding.html' },
+				'genre_info': { templateUrl: '../templates/wedding_info.html' },
+				'about': { templateUrl: '../templates/wedding_about.html' }
+			}
+		})
+		// children photography
+		.state('children', {
+			url: '/children',
+			views: {
+				'gallery': { templateUrl: '../templates/gallery_children.html' },
+				'genre_info': { templateUrl: '../templates/children_info.html' },
+				'about': { templateUrl: '../templates/children_about.html' }
+			}
+		});
+};
 
 // controllers
 // or inject like this: IndexCtrl.$inject = ['$state'];
@@ -47,32 +50,43 @@ function IndexCtrl($state) {
 	};
 }
 
-function GalleryCtrl() {
+function GalleryCtrl(ImageFactory) {
 	var self = this;
-	var all_images = [
-		'Image_0', 
-		'Image_1', 
-		'Image_2', 
-		'Image_3'
-		];
-	var total_image_count = all_images.length;
 	var current_index = 0;
-	
-	this.current_image = all_images[current_index];
+	var image_count = ImageFactory.image_count();
 
-	this.next_image = function() {
+	self.current_image = function() {
+		return ImageFactory.current_image(current_index).imageURL;
+	};
+
+	self.next_image = function() {
 		current_index++;
-		if ( current_index >= total_image_count ) {	current_index = 0; };
-		this.current_image = all_images[current_index];
+		if (current_index >= image_count) { current_index = 0; };
+		self.current_image();
 	};
 
-	this.prev_image = function() {
+	self.prev_image = function() {
 		current_index--;
-		if ( current_index < 0 ) { current_index = total_image_count - 1; };
-		this.current_image = all_images[current_index];
+		if (current_index < 0) { current_index = image_count - 1; };
+		self.current_image();
 	};
+};
 
+function ImageFactory() {
+	var image_list = [
+		{imageURL: "image_0.jpg"},
+		{imageURL: "image_1.jpg"},
+		{imageURL: "image_2.jpg"}
+	];
 
+	return {
+		current_image: function(i) {
+			return image_list[i];
+		},
+		image_count: function() {
+			return image_list.length
+		}
+	};
 };
 
 
