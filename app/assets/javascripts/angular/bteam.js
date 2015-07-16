@@ -25,7 +25,7 @@ function IndexConfig($urlRouterProvider, $stateProvider) {
 		.state('wedding', {
 			url: '/wedding',
 			views: {
-				'gallery': { templateUrl: '../templates/gallery_wedding.html' },
+				'gallery': { templateUrl: '../templates/gallery_viewer.html' },
 				'genre_info': { templateUrl: '../templates/wedding_info.html' },
 				'about': { templateUrl: '../templates/wedding_about.html' }
 			}
@@ -34,7 +34,7 @@ function IndexConfig($urlRouterProvider, $stateProvider) {
 		.state('children', {
 			url: '/children',
 			views: {
-				'gallery': { templateUrl: '../templates/gallery_children.html' },
+				'gallery': { templateUrl: '../templates/gallery_viewer.html' },
 				'genre_info': { templateUrl: '../templates/children_info.html' },
 				'about': { templateUrl: '../templates/children_about.html' }
 			}
@@ -51,12 +51,18 @@ function IndexCtrl($state) {
 }
 
 function GalleryCtrl(ImageFactory) {
+	// vars, inits
 	var self = this;
 	var current_index = 0;
-	var image_count = ImageFactory.image_count();
+	var genre = 'wedding';
+	var image_count = ImageFactory.image_count(genre);
 
-	self.current_image = function() {
-		return ImageFactory.current_image(current_index).imageURL;
+	// functions
+	self.current_image = function(state_genre) {
+		// state_genre passed in from gallery_viewer.html using value of ctrl.genre
+		genre = state_genre;
+		image_count = ImageFactory.image_count(genre);
+		return ImageFactory.current_image(genre, current_index).imageURL;
 	};
 
 	self.next_image = function() {
@@ -73,6 +79,7 @@ function GalleryCtrl(ImageFactory) {
 };
 
 function ImageFactory() {
+	// vars
 	var image_list = {
 		wedding: [
 			{imageURL: "../LaBrake-1.jpg"},
@@ -82,17 +89,17 @@ function ImageFactory() {
 		],
 		children: [
 			{imageURL: "../LaBrake-2.jpg"},
-			{imageURL: "../LaBrake-3.jpg"},
-			{imageURL: "../LaBrake-4.jpg"}
+			{imageURL: "../LaBrake-3.jpg"}
 		]
 	};
 
+	// return functions
 	return {
-		current_image: function(i) {
-			return image_list.wedding[i];
+		current_image: function(genre, i) {
+			return image_list[genre][i];
 		},
-		image_count: function() {
-			return image_list.wedding.length
+		image_count: function(genre) {
+			return image_list[genre].length
 		}
 	};
 };

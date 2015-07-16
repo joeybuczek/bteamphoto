@@ -1,5 +1,10 @@
 <!-- 
 <img class="gallery-image" src="http://bteamphoto.com/images/children/Wally.jpg">
 -->
+<div ng-controller="GalleryCtrl as ctrl_g" class="gallery-container">
 
-<p>Children Image goes here</p>
+	<div ng-click="ctrl_g.prev_image()" class="warning round small prev-image left"><span class="arrow-icon">&larr;</span></div>
+	<div ng-click="ctrl_g.next_image()" class="warning round small next-image right"><span class="arrow-icon">&rarr;</span></div>
+	<img src="{{ ctrl_g.current_image(ctrl.genre) }}" class="gallery-image">
+
+</div>
