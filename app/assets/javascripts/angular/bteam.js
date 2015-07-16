@@ -82,14 +82,14 @@ function ImageFactory() {
 	// vars
 	var image_list = {
 		wedding: [
-			{imageURL: "http://bteamphoto.com/images/wedding/LaBrake-1.jpg"},
-			{imageURL: "http://bteamphoto.com/images/wedding/LaBrake-2.jpg"},
-			{imageURL: "http://bteamphoto.com/images/wedding/LaBrake-3.jpg"},
-			{imageURL: "http://bteamphoto.com/images/wedding/LaBrake-4.jpg"}
+			{imageURL: "../LaBrake-1.jpg"},
+			{imageURL: "../LaBrake-2.jpg"},
+			{imageURL: "../LaBrake-3.jpg"},
+			{imageURL: "../LaBrake-4.jpg"}
 		],
 		children: [
-			{imageURL: "http://bteamphoto.com/images/wedding/LaBrake-2.jpg"},
-			{imageURL: "http://bteamphoto.com/images/wedding/LaBrake-3.jpg"}
+			{imageURL: "../LaBrake-2.jpg"},
+			{imageURL: "../LaBrake-3.jpg"}
 		]
 	};
 
