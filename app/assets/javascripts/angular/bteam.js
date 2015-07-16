@@ -1,6 +1,6 @@
 // modules ==================================================================
 angular
-	.module('indexApp', ['ui.router'])
+	.module('indexApp', ['ui.router', 'ngResource'])
 
 		// config
 		.config(['$urlRouterProvider', '$stateProvider', IndexConfig])
@@ -62,7 +62,7 @@ function GalleryCtrl(ImageFactory) {
 		// state_genre passed in from gallery_viewer.html using value of ctrl.genre
 		genre = state_genre;
 		image_count = ImageFactory.image_count(genre);
-		return ImageFactory.current_image(genre, current_index).imageURL;
+		return ImageFactory.get_image(genre, current_index).imageURL;
 	};
 
 	self.next_image = function() {
@@ -82,24 +82,24 @@ function ImageFactory() {
 	// vars
 	var image_list = {
 		wedding: [
-			{imageURL: "../LaBrake-1.jpg"},
-			{imageURL: "../LaBrake-2.jpg"},
-			{imageURL: "../LaBrake-3.jpg"},
-			{imageURL: "../LaBrake-4.jpg"}
+			{imageURL: "http://bteamphoto.com/images/wedding/LaBrake-1.jpg"},
+			{imageURL: "http://bteamphoto.com/images/wedding/LaBrake-2.jpg"},
+			{imageURL: "http://bteamphoto.com/images/wedding/LaBrake-3.jpg"},
+			{imageURL: "http://bteamphoto.com/images/wedding/LaBrake-4.jpg"}
 		],
 		children: [
-			{imageURL: "../LaBrake-2.jpg"},
-			{imageURL: "../LaBrake-3.jpg"}
+			{imageURL: "http://bteamphoto.com/images/wedding/LaBrake-2.jpg"},
+			{imageURL: "http://bteamphoto.com/images/wedding/LaBrake-3.jpg"}
 		]
 	};
 
 	// return functions
 	return {
-		current_image: function(genre, i) {
+		get_image: function(genre, i) {
 			return image_list[genre][i];
 		},
 		image_count: function(genre) {
-			return image_list[genre].length
+			return image_list[genre].length;
 		}
 	};
 };
