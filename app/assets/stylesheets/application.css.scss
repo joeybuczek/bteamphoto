@@ -135,7 +135,9 @@ select {
 #gallery-wrapper {
 
 }
-
+.gallery-container {
+  height: auto;
+}
 #gallery-marker {
   width: 100%;
   height: auto;
@@ -144,6 +146,39 @@ select {
 }
 .gallery-image {
   width: 100%;
+}
+.next-image, .prev-image {
+  position: absolute;
+  padding: 0px 60px 380px;
+}
+@media (max-width: 800px) {
+  .next-image, .prev-image {
+    padding: 0px 60px 280px;
+  }
+}
+@media (max-width: 600px) {
+  .next-image, .prev-image {
+    padding: 0px 60px 180px;
+  }
+}
+.prev-image {
+  left: 1%;
+  padding-left: 20px;
+  padding-right: 100px;
+  cursor: w-resize;
+}
+.next-image {
+  right: 1%;
+  padding-left: 100px;
+  padding-right: 20px;
+  cursor: e-resize;
+}
+.arrow-icon {
+  color: #eee;
+  position: relative;
+  top: 20px;
+  text-shadow: 2px 2px 2px #333;
+  margin: 0;
 }
 #contact-bar {
   background-color: indigo;

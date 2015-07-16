@@ -73,18 +73,26 @@ function GalleryCtrl(ImageFactory) {
 };
 
 function ImageFactory() {
-	var image_list = [
-		{imageURL: "image_0.jpg"},
-		{imageURL: "image_1.jpg"},
-		{imageURL: "image_2.jpg"}
-	];
+	var image_list = {
+		wedding: [
+			{imageURL: "../LaBrake-1.jpg"},
+			{imageURL: "../LaBrake-2.jpg"},
+			{imageURL: "../LaBrake-3.jpg"},
+			{imageURL: "../LaBrake-4.jpg"}
+		],
+		children: [
+			{imageURL: "../LaBrake-2.jpg"},
+			{imageURL: "../LaBrake-3.jpg"},
+			{imageURL: "../LaBrake-4.jpg"}
+		]
+	};
 
 	return {
 		current_image: function(i) {
-			return image_list[i];
+			return image_list.wedding[i];
 		},
 		image_count: function() {
-			return image_list.length
+			return image_list.wedding.length
 		}
 	};
 };
