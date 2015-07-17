@@ -82,24 +82,26 @@ function ImageFactory() {
 	// vars
 	var image_list = {
 		wedding: [
-			{imageURL: "http://bteamphoto.com/images/wedding/LaBrake-1.jpg"},
-			{imageURL: "http://bteamphoto.com/images/wedding/LaBrake-2.jpg"},
-			{imageURL: "http://bteamphoto.com/images/wedding/LaBrake-3.jpg"},
-			{imageURL: "http://bteamphoto.com/images/wedding/LaBrake-4.jpg"}
+			{imageURL: "../LaBrake-1.jpg"},
+			{imageURL: "../LaBrake-2.jpg"},
+			{imageURL: "../LaBrake-3.jpg"},
+			{imageURL: "../LaBrake-4.jpg"}
 		],
 		children: [
-			{imageURL: "http://bteamphoto.com/images/wedding/LaBrake-2.jpg"},
-			{imageURL: "http://bteamphoto.com/images/wedding/LaBrake-3.jpg"}
+			{imageURL: "../LaBrake-2.jpg"},
+			{imageURL: "../LaBrake-3.jpg"}
 		]
 	};
 
 	// return functions
 	return {
 		get_image: function(genre, i) {
-			return image_list[genre][i];
+			// return indexed object within array, or nothing if not yet loaded
+			return (image_list[genre] && image_list[genre][i]) || "";
 		},
 		image_count: function(genre) {
-			return image_list[genre].length;
+			// return length, or 0 if not yet loaded
+			return (image_list[genre] && image_list[genre].length) || 0;
 		}
 	};
 };
