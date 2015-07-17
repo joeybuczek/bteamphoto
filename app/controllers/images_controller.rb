@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-respond_to :html, :js
+respond_to :html, :js, :json
 
   def create
   	@collection = Collection.find(params[:image][:collection_id])
@@ -12,6 +12,16 @@ respond_to :html, :js
   	unless @image.destroy
       flash[:error] = "There was a problem deleting the image."
     end
-
   end
+
+  def gallery_images
+    @images = Image.all
+    images_array = [];
+    @images.each do |image|
+      images_array << image.url
+    end
+
+    render json: images_array
+  end
+
 end

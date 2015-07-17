@@ -3,7 +3,7 @@ angular
 	.module('indexApp', ['ui.router', 'ngResource'])
 
 		// config
-		.config(['$urlRouterProvider', '$stateProvider', IndexConfig])
+		.config(['$urlRouterProvider', '$stateProvider', '$resourceProvider', IndexConfig])
 
 		// index controller (inject $state)
 		.controller('IndexCtrl', ['$state', IndexCtrl])
@@ -18,7 +18,8 @@ angular
 // module functions =========================================================
 
 // configuration
-function IndexConfig($urlRouterProvider, $stateProvider) {
+function IndexConfig($urlRouterProvider, $stateProvider, $resourceProvider) {
+	$resourceProvider.defaults.stripTrailingSlashes = false;
 	$urlRouterProvider.otherwise('/wedding');
 	$stateProvider
 		// wedding photography
@@ -72,9 +73,9 @@ function GalleryCtrl(ImageFactory) {
 	};
 
 	self.prev_image = function() {
-		current_index--;
-		if (current_index < 0) { current_index = image_count - 1; };
-		self.current_image();
+			current_index--;
+			if (current_index < 0) { current_index = image_count - 1; };
+			self.current_image();
 	};
 };
 
@@ -105,5 +106,4 @@ function ImageFactory() {
 		}
 	};
 };
-
 
