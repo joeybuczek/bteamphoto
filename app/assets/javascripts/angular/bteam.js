@@ -71,6 +71,8 @@ function GalleryCtrl(ResourceFactory, $state) {
 			// get images and count based on arg of current state's data.genre
 			self.image_count = data.images.length;
 			self.current_image = data.images[iIndex];
+			// testing
+			console.log(self.image_count);
 		})
 	};
 
