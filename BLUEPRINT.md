@@ -30,3 +30,12 @@
 
  - I should be able to visit the main welcome page of the site and view images, content, and contact information. When using my mobile device I should be able to initiate a phone call to the photographer by touching the phone number on the main welcome page (same for email/email address).
 
+ - The main welcome page of the site should utilize AngularJS for content delivery/view-switching.
+
+ - The different views (wedding/portraits/etc) should be controlled via select box in the contact bar area, and all other relevant content on the page should change with it.
+
+ **8. As a site developer, I should be able to reset my database by seeding it with proper admin user/rights.
+
+ - I should be able to run rake db:reset and have the default admin account set up with initial password, along with 'demo' user/data.
+
+ 
