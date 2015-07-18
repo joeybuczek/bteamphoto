@@ -15,7 +15,7 @@ respond_to :html, :js, :json
   end
 
   def gallery_images
-    @images = Image.all
+    @images = Image.where(genre: params[:genre])
     images_array = [];
     @images.each do |image|
       images_array << image.url

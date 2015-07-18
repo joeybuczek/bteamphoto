@@ -155,9 +155,9 @@ select {
 }
 .contact-bar-text {
   color: white;
+  margin: 0 0 0 10px;
 }
 .contact-bar-link {
-  margin: 0 0 0 10px;
   font-size: 14pt;
 }
 .contact-bar-phone-number {
@@ -176,8 +176,11 @@ select {
   .next-image, .prev-image {
     padding: 0px 60px 180px;
   }
+  .contact-bar-phone-number {
+    font-size: 18pt;
+  }
   .contact-bar-link {
-    font-size: 18px;
+    font-size: 12pt;
   }
 }
 .prev-image {

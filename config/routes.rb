@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   resources :images, only: [:create, :destroy]
 
   # Gallery images in json
-  get 'gallery_images' => 'images#gallery_images'
+  get 'gallery_images/:genre' => 'images#gallery_images'
   
   
   

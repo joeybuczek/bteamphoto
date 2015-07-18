@@ -9,15 +9,13 @@ angular
 		.controller('IndexCtrl', ['$state', IndexCtrl])
 
 		// wedding images controller
-		.controller('GalleryCtrl', ['ImageFactory', GalleryCtrl])
+		.controller('GalleryCtrl', ['ResourceFactory', '$state', GalleryCtrl])
 
-		// image factory
-		.factory('ImageFactory', [ImageFactory]);
+		// resource factory
+		.factory('ResourceFactory', ['$resource', ResourceFactory]);
 
 
-// module functions =========================================================
-
-// configuration
+// configuration ============================================================
 function IndexConfig($urlRouterProvider, $stateProvider, $resourceProvider) {
 	$resourceProvider.defaults.stripTrailingSlashes = false;
 	$urlRouterProvider.otherwise('/wedding');
@@ -29,7 +27,8 @@ function IndexConfig($urlRouterProvider, $stateProvider, $resourceProvider) {
 				'gallery': { templateUrl: '../templates/gallery_viewer.html' },
 				'genre_info': { templateUrl: '../templates/wedding_info.html' },
 				'about': { templateUrl: '../templates/wedding_about.html' }
-			}
+			},
+			data: { genre: 'wedding' }
 		})
 		// children photography
 		.state('children', {
@@ -38,72 +37,64 @@ function IndexConfig($urlRouterProvider, $stateProvider, $resourceProvider) {
 				'gallery': { templateUrl: '../templates/gallery_viewer.html' },
 				'genre_info': { templateUrl: '../templates/children_info.html' },
 				'about': { templateUrl: '../templates/children_about.html' }
-			}
+			},
+			data: { genre: 'children' }
 		});
 };
 
-// controllers
-// or inject like this: IndexCtrl.$inject = ['$state'];
+
+// controllers =============================================================
+// ( or inject like this: IndexCtrl.$inject = ['$state']; <-- put on line above controller definition)
 function IndexCtrl($state) {
+	// template: index.html.erb
+	// vars
 	var self = this;
+
+	// functions
 	this.changeState = function (genre) {
 		$state.go(genre);
 	};
 }
 
-function GalleryCtrl(ImageFactory) {
+function GalleryCtrl(ResourceFactory, $state) {
+	// template: gallery_viewer.html
 	// vars, inits
 	var self = this;
 	var current_index = 0;
-	var genre = 'wedding';
-	var image_count = ImageFactory.image_count(genre);
+	var genre = $state.current.data.genre;
 
-	// functions
-	self.current_image = function(state_genre) {
-		// state_genre passed in from gallery_viewer.html using value of ctrl.genre
-		genre = state_genre;
-		image_count = ImageFactory.image_count(genre);
-		return ImageFactory.get_image(genre, current_index).imageURL;
+	getResources(genre, current_index);
+
+	// functions 
+	function getResources(arg_genre, iIndex) {
+		ResourceFactory.all_genres(arg_genre).query(function(data) {
+			// get images and count based on current state's data.genre
+			self.image_count = data.images.length;
+			self.current_image = data.images[iIndex];
+		})
 	};
 
 	self.next_image = function() {
 		current_index++;
-		if (current_index >= image_count) { current_index = 0; };
-		self.current_image();
+		if (current_index >= self.image_count) { current_index = 0; };
+		getResources(genre, current_index);
 	};
 
 	self.prev_image = function() {
-			current_index--;
-			if (current_index < 0) { current_index = image_count - 1; };
-			self.current_image();
+		current_index--;
+		if (current_index < 0) { current_index = self.image_count - 1; };
+		getResources(genre, current_index);
 	};
 };
 
-function ImageFactory() {
-	// vars
-	var image_list = {
-		wedding: [
-			{imageURL: "../LaBrake-1.jpg"},
-			{imageURL: "../LaBrake-2.jpg"},
-			{imageURL: "../LaBrake-3.jpg"},
-			{imageURL: "../LaBrake-4.jpg"}
-		],
-		children: [
-			{imageURL: "../LaBrake-2.jpg"},
-			{imageURL: "../LaBrake-3.jpg"}
-		]
-	};
 
-	// return functions
-	return {
-		get_image: function(genre, i) {
-			// return indexed object within array, or nothing if not yet loaded
-			return (image_list[genre] && image_list[genre][i]) || "";
-		},
-		image_count: function(genre) {
-			// return length, or 0 if not yet loaded
-			return (image_list[genre] && image_list[genre].length) || 0;
+// factories =============================================================
+function ResourceFactory($resource) {
+	return { 
+		all_genres: function(genre) {
+			return $resource('/gallery_images/:genre', {'genre': genre}, { 'query': { method: 'GET', isArray: false } }) || ""; 
 		}
 	};
 };
+
 
