@@ -68,7 +68,7 @@ function GalleryCtrl(ResourceFactory, $state) {
 	// functions 
 	function getResources(arg_genre, iIndex) {
 		ResourceFactory.all_genres(arg_genre).query(function(data) {
-			// get images and count based on current state's data.genre
+			// get images and count based on arg of current state's data.genre
 			self.image_count = data.images.length;
 			self.current_image = data.images[iIndex];
 		})
