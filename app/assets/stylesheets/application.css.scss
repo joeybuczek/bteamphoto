@@ -174,13 +174,17 @@ select {
 }
 @media (max-width: 600px) {
   .next-image, .prev-image {
-    padding: 0px 60px 180px;
+    padding: 0px 60px 160px;
   }
   .contact-bar-phone-number {
-    font-size: 18pt;
+    font-size: 20pt;
+    position: relative;
+    top: 5px;
   }
   .contact-bar-link {
     font-size: 12pt;
+    position: relative;
+    top: -5px;
   }
 }
 .prev-image {
