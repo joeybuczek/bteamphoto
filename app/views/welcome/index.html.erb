@@ -7,20 +7,14 @@
 		<div id="gallery-marker" class="ng-cloak">
 
 			<div ui-view="gallery"></div>
-			<p>{{ ctrl.title }}</p>
 
 		</div>
 
 		<!-- Contact Bar -->
 		<div id="contact-bar">
 
-			<div class="right contact-bar-text">
-				
-				<!-- 
-				<a class="contact-bar-text contact-bar-link nudge-down-10" ui-sref="wedding">Weddings</a>
-				<a class="contact-bar-text contact-bar-link nudge-down-10" ui-sref="children">Children</a>
-				-->
-				
+			<!-- Select Box (genre) -->
+			<div class="right contact-bar-text">	
 				<div ng-init="ctrl.genre = 'wedding'">
 					<select ng-model="ctrl.genre" 
 							ng-change="ctrl.changeState(ctrl.genre)"
@@ -29,14 +23,12 @@
 						<option value="children">Babies/Children</option>
 					</select>
 				</div>
-				
-
 			</div>
 
 			<!-- Contact Links -->
 			<%= link_to '315.632.2442', 'tel://1-315-632-2442', class: 'contact-bar-text contact-bar-phone-number' %>
 			<br/>
-			<%= link_to 'bteamphoto@gmail.com', '#', class: 'contact-bar-text contact-bar-link nudge-up-10' %>
+			<%= link_to 'bteamphoto@gmail.com', 'mailto:bteamphoto@gmail.com', class: 'contact-bar-text contact-bar-link nudge-up-10' %>
 			
 		</div>
 

@@ -9,10 +9,10 @@ angular
 		.controller('IndexCtrl', ['$state', IndexCtrl])
 
 		// wedding images controller
-		.controller('GalleryCtrl', ['ResourceFactory', '$state', GalleryCtrl])
+		.controller('GalleryCtrl', ['ImageFactory', '$state', GalleryCtrl])
 
 		// resource factory
-		.factory('ResourceFactory', ['$resource', ResourceFactory]);
+		.factory('ImageFactory', ['$resource', ImageFactory]);
 
 
 // configuration ============================================================
@@ -56,19 +56,21 @@ function IndexCtrl($state) {
 	};
 }
 
-function GalleryCtrl(ResourceFactory, $state) {
+function GalleryCtrl(ImageFactory, $state) {
 	// template: gallery_viewer.html
 	// vars, inits
 	var self = this;
 	var current_index = 0;
 	var genre = $state.current.data.genre;
-
-	getResources(genre, current_index);
+	
+	self.images = [];
+	getImages(genre, current_index);
 
 	// functions 
-	function getResources(arg_genre, iIndex) {
-		ResourceFactory.all_genres(arg_genre).query(function(data) {
+	function getImages(arg_genre, iIndex) {
+		ImageFactory.query({ genre: arg_genre }, function(data) {
 			// get images and count based on arg of current state's data.genre
+			self.images = data.images;
 			self.image_count = data.images.length;
 			self.current_image = data.images[iIndex];
 		})
@@ -77,24 +79,22 @@ function GalleryCtrl(ResourceFactory, $state) {
 	self.next_image = function() {
 		current_index++;
 		if (current_index >= self.image_count) { current_index = 0; };
-		getResources(genre, current_index);
+		self.current_image = self.images[current_index];
 	};
 
 	self.prev_image = function() {
 		current_index--;
 		if (current_index < 0) { current_index = self.image_count - 1; };
-		getResources(genre, current_index);
+		self.current_image = self.images[current_index];
 	};
 };
 
 
 // factories =============================================================
-function ResourceFactory($resource) {
-	return { 
-		all_genres: function(genre) {
-			return $resource('/gallery_images/:genre', {'genre': genre}, { 'query': { method: 'GET', isArray: false } }) || ""; 
-		}
-	};
+function ImageFactory($resource) {
+	var images = $resource('/gallery_images/:genre', { genre: '@genre' }, { 'query': { method: 'GET', isArray: false } });
+
+	return images;
 };
 
 
