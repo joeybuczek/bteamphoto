@@ -1,6 +1,6 @@
 // modules ==================================================================
 angular
-	.module('indexApp', ['ui.router', 'ngResource'])
+	.module('IndexApp', ['ui.router', 'ngResource'])
 
 		// config
 		.config(['$urlRouterProvider', '$stateProvider', '$resourceProvider', IndexConfig])
@@ -44,14 +44,14 @@ function IndexConfig($urlRouterProvider, $stateProvider, $resourceProvider) {
 
 
 // controllers =============================================================
-// ( or inject like this: IndexCtrl.$inject = ['$state']; <-- put on line above controller definition)
+// (or inject like this: IndexCtrl.$inject = ['$state']; <-- put on line above controller definition)
 function IndexCtrl($state) {
 	// template: index.html.erb
 	// vars
 	var self = this;
 
 	// functions
-	this.changeState = function (genre) {
+	self.changeState = function (genre) {
 		$state.go(genre);
 	};
 }

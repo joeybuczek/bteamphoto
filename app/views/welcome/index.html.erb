@@ -1,12 +1,13 @@
 <div id="index-wrapper">
 
 	<!-- AngularJS Content Area -->
-	<div ng-app="indexApp" ng-controller="IndexCtrl as ctrl">
+	<div ng-app="IndexApp" ng-controller="IndexCtrl as ctrl">
 
 		<!-- Gallery -->
 		<div id="gallery-marker" class="ng-cloak">
 
 			<div ui-view="gallery"></div>
+			<p>{{ ctrl.title }}</p>
 
 		</div>
 
