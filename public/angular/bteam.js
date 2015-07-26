@@ -18,7 +18,10 @@ angular
 		.directive('emailAddress', [EmailAddress])
 
 		// phone number directive
-		.directive('phoneNumber', [PhoneNumber]);
+		.directive('phoneNumber', [PhoneNumber])
+
+		// image gallery directive
+		.directive('imageGallery', [ImageGallery]);
 
 
 // configuration ============================================================
@@ -118,6 +121,13 @@ function PhoneNumber() {
 		restrict: 'E',
 		scope: { phoneNumber: '=phone', displayNumber: '=display' },
 		template: '<a href="tel://{{phoneNumber}}">{{displayNumber}}</a>'
+	};
+};
+
+function ImageGallery() {
+	return {
+		restrict: 'E',
+		templateUrl: '../templates/gallery_viewer.html'
 	};
 };
 
