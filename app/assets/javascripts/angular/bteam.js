@@ -12,7 +12,13 @@ angular
 		.controller('GalleryCtrl', ['ImageFactory', '$state', GalleryCtrl])
 
 		// resource factory
-		.factory('ImageFactory', ['$resource', ImageFactory]);
+		.factory('ImageFactory', ['$resource', ImageFactory])
+
+		// email address directive
+		.directive('emailAddress', [EmailAddress])
+
+		// phone number directive
+		.directive('phoneNumber', [PhoneNumber]);
 
 
 // configuration ============================================================
@@ -95,6 +101,24 @@ function ImageFactory($resource) {
 	var images = $resource('/gallery_images/:genre', { genre: '@genre' }, { 'query': { method: 'GET', isArray: false } });
 
 	return images;
+};
+
+
+// directives ============================================================
+function EmailAddress() {
+	return {
+		restrict: 'E',
+		scope: { emailAddy: '=addy', subjectLine: '=subject' },
+		template: '<a href="mailto:{{emailAddy}}?subject={{subjectLine}}">{{emailAddy}}</a>'
+	};
+};
+
+function PhoneNumber() {
+	return {
+		restrict: 'E',
+		scope: { phoneNumber: '=phone', displayNumber: '=display' },
+		template: '<a href="tel://{{phoneNumber}}">{{displayNumber}}</a>'
+	};
 };
 
 

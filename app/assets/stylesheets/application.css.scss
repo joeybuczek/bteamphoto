@@ -153,15 +153,24 @@ select {
   width: 100%;
   padding: 0 20px;
 }
-.contact-bar-text {
+#contact-bar a {
   color: white;
   margin: 0 0 0 10px;
 }
-.contact-bar-link {
-  font-size: 14pt;
+#contact-bar a:hover {
+  color: #C9B2DA;
 }
-.contact-bar-phone-number {
+phone-number {
   font-size: 24pt;
+}
+email-address {
+  font-size: 14pt;
+  position: relative;
+  top: -10px;
+}
+.contact-bar-text {
+  color: white;
+  margin: 0 0 0 10px;
 }
 .next-image, .prev-image {
   position: absolute;
@@ -176,12 +185,12 @@ select {
   .next-image, .prev-image {
     padding: 0px 60px 160px;
   }
-  .contact-bar-phone-number {
+  phone-number {
     font-size: 20pt;
     position: relative;
     top: 5px;
   }
-  .contact-bar-link {
+  email-address {
     font-size: 12pt;
     position: relative;
     top: -5px;
@@ -209,9 +218,6 @@ select {
 .select-genre {
   width: 120px;
   font-size: 12px;
-}
-.wedding {
-
 }
 .section-genre {
 

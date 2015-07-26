@@ -26,9 +26,9 @@
 			</div>
 
 			<!-- Contact Links -->
-			<%= link_to '315.632.2442', 'tel://1-315-632-2442', class: 'contact-bar-text contact-bar-phone-number' %>
+			<phone-number phone="'1-315-632-2442'" display="'315.632.2442'"></phone-number>
 			<br/>
-			<%= link_to 'bteamphoto@gmail.com', 'mailto:bteamphoto@gmail.com', class: 'contact-bar-text contact-bar-link nudge-up-10' %>
+			<email-address addy="'bteamphoto@gmail.com'" subject="'Hello B-Team! We are in need of a photographer...'"></email-address>
 			
 		</div>
 
@@ -38,7 +38,7 @@
 
 			<!-- Left column -->
 			<div class="large-6 columns">
-				<div class="section-genre wedding">
+				<div class="section-genre">
 
 					<!-- Genre Info View -->
 					<div ui-view="genre_info"></div>
@@ -46,7 +46,7 @@
 				</div>
 
 				<!-- Reviews -->
-				<div class="section-reviews wedding">
+				<div class="section-reviews">
 					<p class="medium-text">What our clients are saying!</p>
 					<div class="ng-cloak">
 
@@ -57,7 +57,7 @@
 
 			<!-- Right column -->
 			<div class="large-6 columns">
-				<div class="section-about wedding">
+				<div class="section-about">
 
 					<!-- About View -->
 					<div ui-view="about"></div>
