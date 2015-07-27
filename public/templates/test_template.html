@@ -1,0 +1,48 @@
+<div ng-controller="GalleryCtrl as ctrl_g" class="gallery-container">
+
+	<div ng-click="ctrl_g.prev_image()" class="prev-image left"><span class="arrow-icon">&larr;</span></div>
+	<div ng-click="ctrl_g.next_image()" class="next-image right"><span class="arrow-icon">&rarr;</span></div>
+	<img src="{{ ctrl_g.current_image }}" class="gallery-image">
+
+</div>
+
+<script>
+
+	// extracted gallery controller - no longer needed now that directive is created 07.26.15
+
+	// wedding images controller
+	.controller('GalleryCtrl', ['ImageFactory', '$state', GalleryCtrl])
+
+	function GalleryCtrl(ImageFactory, $state) {
+		// template: gallery_viewer.html
+		// vars, inits
+		var self = this;
+		var current_index = 0;
+		var genre = $state.current.data.genre;
+		
+		self.images = [];
+		getImages(genre, current_index);
+
+		// functions 
+		function getImages(arg_genre, iIndex) {
+			ImageFactory.query({ genre: arg_genre }, function(data) {
+				// get images and count based on arg of current state's data.genre
+				self.images = data.images;
+				self.image_count = data.images.length;
+				self.current_image = data.images[iIndex];
+			})
+		};
+
+		self.next_image = function() {
+			current_index++;
+			if (current_index >= self.image_count) { current_index = 0; };
+			self.current_image = self.images[current_index];
+		};
+
+		self.prev_image = function() {
+			current_index--;
+			if (current_index < 0) { current_index = self.image_count - 1; };
+			self.current_image = self.images[current_index];
+		};
+	};
+</script>

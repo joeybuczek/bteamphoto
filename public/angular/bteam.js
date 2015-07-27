@@ -8,9 +8,6 @@ angular
 		// index controller (inject $state)
 		.controller('IndexCtrl', ['$state', IndexCtrl])
 
-		// wedding images controller
-		.controller('GalleryCtrl', ['ImageFactory', '$state', GalleryCtrl])
-
 		// resource factory
 		.factory('ImageFactory', ['$resource', ImageFactory])
 
@@ -21,7 +18,7 @@ angular
 		.directive('phoneNumber', [PhoneNumber])
 
 		// image gallery directive
-		.directive('imageGallery', [ImageGallery]);
+		.directive('imageGallery', ['ImageFactory', ImageGallery]);
 
 
 // configuration ============================================================
@@ -33,7 +30,7 @@ function IndexConfig($urlRouterProvider, $stateProvider, $resourceProvider) {
 		.state('wedding', {
 			url: '/wedding',
 			views: {
-				'gallery': { templateUrl: '../templates/gallery_viewer.html' },
+				'gallery': { template: '<image-gallery genre="ctrl.genre"></image-gallery>' },
 				'genre_info': { templateUrl: '../templates/wedding_info.html' },
 				'about': { templateUrl: '../templates/wedding_about.html' }
 			},
@@ -43,7 +40,7 @@ function IndexConfig($urlRouterProvider, $stateProvider, $resourceProvider) {
 		.state('children', {
 			url: '/children',
 			views: {
-				'gallery': { templateUrl: '../templates/gallery_viewer.html' },
+				'gallery': { template: '<image-gallery genre="ctrl.genre"></image-gallery>' },
 				'genre_info': { templateUrl: '../templates/children_info.html' },
 				'about': { templateUrl: '../templates/children_about.html' }
 			},
@@ -65,39 +62,6 @@ function IndexCtrl($state) {
 	};
 }
 
-function GalleryCtrl(ImageFactory, $state) {
-	// template: gallery_viewer.html
-	// vars, inits
-	var self = this;
-	var current_index = 0;
-	var genre = $state.current.data.genre;
-	
-	self.images = [];
-	getImages(genre, current_index);
-
-	// functions 
-	function getImages(arg_genre, iIndex) {
-		ImageFactory.query({ genre: arg_genre }, function(data) {
-			// get images and count based on arg of current state's data.genre
-			self.images = data.images;
-			self.image_count = data.images.length;
-			self.current_image = data.images[iIndex];
-		})
-	};
-
-	self.next_image = function() {
-		current_index++;
-		if (current_index >= self.image_count) { current_index = 0; };
-		self.current_image = self.images[current_index];
-	};
-
-	self.prev_image = function() {
-		current_index--;
-		if (current_index < 0) { current_index = self.image_count - 1; };
-		self.current_image = self.images[current_index];
-	};
-};
-
 
 // factories =============================================================
 function ImageFactory($resource) {
@@ -111,23 +75,60 @@ function ImageFactory($resource) {
 function EmailAddress() {
 	return {
 		restrict: 'E',
-		scope: { emailAddy: '=addy', subjectLine: '=subject' },
-		template: '<a href="mailto:{{emailAddy}}?subject={{subjectLine}}">{{emailAddy}}</a>'
+		scope: { emailAddy: '@addy', subject: '@' },
+		template: '<a href="mailto:{{emailAddy}}?subject={{subject}}">{{emailAddy}}</a>'
 	};
 };
 
 function PhoneNumber() {
 	return {
 		restrict: 'E',
-		scope: { phoneNumber: '=phone', displayNumber: '=display' },
-		template: '<a href="tel://{{phoneNumber}}">{{displayNumber}}</a>'
+		scope: { phoneNumber: '@phone', display: '@' },
+		template: '<a href="tel://{{phoneNumber}}">{{display}}</a>'
 	};
 };
 
-function ImageGallery() {
+function ImageGallery(ImageFactory) {
 	return {
 		restrict: 'E',
-		templateUrl: '../templates/gallery_viewer.html'
+		scope: { 
+			genre: "="
+		},
+		template: '<div id="gallery-directive">' +
+							'<div ng-click="prev_image()" class="prev-image left"><span class="arrow-icon">&larr;</span></div>' +
+							'<div ng-click="next_image()" class="next-image right"><span class="arrow-icon">&rarr;</span></div>' +
+							'<img src="{{ current_image }}" class="gallery-image">' +
+							'</div>',
+		link: function($scope, $element, $attrs) {
+
+			// vars
+			var iGallery = $scope;
+			var current_index = 0;
+			iGallery.images = [];
+
+			// functions
+			iGallery.next_image = function() { 
+				current_index++;
+				if (current_index >= iGallery.image_count) { current_index = 0; };
+				iGallery.current_image = iGallery.images[current_index];
+			};
+			iGallery.prev_image = function() {
+				current_index--;
+				if (current_index < 0) { current_index = iGallery.image_count - 1; };
+				iGallery.current_image = iGallery.images[current_index];
+			};
+			iGallery.get_images = function() {
+				ImageFactory.query({genre: iGallery.genre}, function(data) { 
+					iGallery.images = data.images;
+					iGallery.image_count = data.images.length;
+					iGallery.current_image = data.images[current_index]; 
+				})
+			};
+
+			// inits
+			iGallery.get_images();
+
+		}
 	};
 };
 
