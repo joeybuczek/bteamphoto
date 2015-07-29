@@ -44,6 +44,7 @@
       <p id="image-<%= image.id %>">
         <img class="thumbnail" src="<%= image.url %>">
         <br/>
+        <span> <%= image.name %> </span>
         <%= link_to 'Delete', image, method: :delete, class: 'label round secondary', remote: true %>
       </p>
     <% end %>

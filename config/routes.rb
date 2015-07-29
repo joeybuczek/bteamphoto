@@ -45,7 +45,7 @@ Rails.application.routes.draw do
 
   # Images with json
   get 'gallery_images/:genre' => 'images#gallery_images'
-  
+  get 'add_image/:genre' => "images#add_image"
   
   
   

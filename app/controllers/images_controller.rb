@@ -24,4 +24,13 @@ respond_to :html, :js, :json
     render json: images_array
   end
 
+  def add_image
+    
+    # next step: work on passing in requirements
+    @collection = Collection.where( genre: params[:genre] ).first
+    @image = @collection.images.build( name: params[:name], genre: params[:genre] ).save
+
+    render json: @image
+  end
+
 end

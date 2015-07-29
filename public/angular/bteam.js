@@ -8,8 +8,14 @@ angular
 		// index controller (inject $state)
 		.controller('IndexCtrl', ['$state', IndexCtrl])
 
-		// resource factory
+		// add images controller
+		.controller('AddImageCtrl', ['AddImageFactory', AddImageCtrl])
+
+		// resource query factory
 		.factory('ImageFactory', ['$resource', ImageFactory])
+
+		// resource image adding factory
+		.factory('AddImageFactory', ['$resource', AddImageFactory])
 
 		// email address directive
 		.directive('emailAddress', [EmailAddress])
@@ -60,7 +66,18 @@ function IndexCtrl($state) {
 	self.changeState = function (genre) {
 		$state.go(genre);
 	};
-}
+};
+
+function AddImageCtrl(AddImageFactory) {
+	// vars
+	var self = this;
+
+	// use inputs in view to generate genre and name arguments
+	self.add_image = function(name, genre) {
+		var new_image = AddImageFactory.get({ name: name, genre: genre });
+	};
+
+};
 
 
 // factories =============================================================
@@ -68,6 +85,10 @@ function ImageFactory($resource) {
 	var images = $resource('/gallery_images/:genre', { genre: '@genre' }, { 'query': { method: 'GET', isArray: false } });
 
 	return images;
+};
+
+function AddImageFactory($resource) {
+	return $resource('/add_image/:genre');
 };
 
 
