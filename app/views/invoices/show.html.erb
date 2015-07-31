@@ -97,7 +97,7 @@
           <td>
             <span>Balance due:</span>
             <% if @invoice.balance > 0 %>
-              <%= link_to "Pay Balance", new_charge_path(@invoice), class: 'label round secondary right' %>
+              <!-- link_to "Make Payment", new_payment_path(@invoice), class: 'label round secondary right' -->
             <% else %>
               <span class="label round success right">Paid</span>
             <% end %>
@@ -108,6 +108,28 @@
         </tr>
       </tfoot>
     </table>
+
+    <!-- Payment selection -->
+    <% if @invoice.balance > 0 %>
+      <%= form_for @invoice do |f| %>
+        <fieldset>
+          <legend>Online Payments</legend>
+          <span>Enter Amount:</span>
+          <div class="row">
+            <div class="large-12">
+              <div class="row-collapse">
+                <div class="large-4 small-6 columns">
+                  <%= f.text_field :payment %>
+                </div>
+                <div class="large-8 small-6 columns">
+                  <%= f.submit 'Make Payment', class: 'button tiny radius secondary inline' %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      <% end %>
+    <% end %>
     
     <br/>
     <% if current_user.admin? %>

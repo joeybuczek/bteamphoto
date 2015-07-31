@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150619040851) do
+ActiveRecord::Schema.define(version: 20150729170739) do
 
   create_table "collections", force: true do |t|
     t.string   "name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150619040851) do
     t.integer  "balance_cents"
     t.string   "balance_currency"
     t.decimal  "tax_rate"
+    t.integer  "payment_cents"
   end
 
   add_index "invoices", ["invoiceable_id", "invoiceable_type"], name: "index_invoices_on_invoiceable_id_and_invoiceable_type"

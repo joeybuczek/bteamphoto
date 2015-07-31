@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   # resources :charges, only: [:create]
   post 'create_charge/:id' => 'charges#create', as: :create_charge
   get 'new_charge/:id' => 'charges#new', as: :new_charge
+  get 'new_payment/:id' => 'charges#payment', as: :new_payment
 
   # Images
   resources :collections, only: [:index, :create, :edit, :update, :destroy]

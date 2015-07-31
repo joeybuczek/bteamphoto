@@ -11,13 +11,13 @@ class ChargesController < ApplicationController
     # create charge (Amount is its own class/model ... or ... pass this value in as argument/params?)
     charge = Stripe::Charge.create(
       customer: customer.id,
-      amount: @invoice.balance_cents,
+      amount: @invoice.payment_cents,
       description: "B-Team Photography payment from: #{current_user.email}",
       currency: 'usd'
     )
   
   flash[:notice] = "Payment successfully processed!"
-  @invoice.update_attributes(balance_cents: 0)
+  @invoice.update_attributes(balance_cents: 0, payment_cents: 0)
   redirect_to @invoice
   
   # catch any errors and go back to payment process page
@@ -33,7 +33,13 @@ class ChargesController < ApplicationController
       name: "B-Team Photography",
       description: @invoice.description,
       email: current_user.email,
-      amount: @invoice.balance_cents
+      amount: @invoice.payment_cents
     }
   end
+
+  def payment
+    @invoice = Invoice.find(params[:id])
+
+  end
+
 end

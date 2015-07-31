@@ -4,14 +4,22 @@ class InvoicesController < ApplicationController
   def create   
     @invoice = Invoice.new(params.require(:invoice).permit(:description, :balance, :invoiceable_id, :invoiceable_type, :tax_rate))
     # default tax rate is set before create if none given (see model)
+    # default payment_cents is 0 to start, as a monetized column cannot be nil
+    @invoice.payment_cents = 0
     @invoice.save
     redirect_to @invoice
   end
   
   def update
     @invoice = Invoice.find(params[:id])
-    @invoice.update_attributes(params.require(:invoice).permit(:description, :balance, :tax_rate))
-    redirect_to request.referrer
+    @invoice.update_attributes(params.require(:invoice).permit(:description, :balance, :tax_rate, :payment))
+
+    # direct based on payment amount: 0 => invoice, >0 => cc charge 
+    if @invoice.payment_cents == 0
+      redirect_to @invoice 
+    else
+      redirect_to new_charge_path(@invoice)
+    end
   end
   
   def show
@@ -37,6 +45,9 @@ class InvoicesController < ApplicationController
 
     # sum up grand total
     @invoice_grand_total = @invoice_subtotal + @invoice_tax
+
+    # reset payment to 0
+    @invoice.update_attributes(payment_cents: 0)
   end
   
   def destroy

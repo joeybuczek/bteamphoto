@@ -6,15 +6,15 @@
 	<p class="large-text">Payment</p>
 	<p class="medium-text">
 		<span><%= @invoice.description %></span><br/>
-		<span class="subdued-text">Current balance due: <span class="subdued-text" id="invoice_balance"><%= humanized_money_with_symbol(@invoice.balance) %></span></span>
+		<span class="subdued-text">Current payment amount: <span class="subdued-text" id="invoice_balance"><%= humanized_money_with_symbol(@invoice.payment) %></span></span>
 	</p>
 
-	<p>To pay the balance due via credit card, click the button below. To pay a different amount, or for other payment arrangements, please contact us at <a href="mailto:bteamphoto@gmail.com">bteamphoto@gmail.com</a>.</p>
+	<p>Ensure the payment amount above is correct, then click the button below. For other payment arrangements, please contact us at <a href="mailto:bteamphoto@gmail.com">bteamphoto@gmail.com</a>.</p>
 
 	<%= form_tag create_charge_path(@invoice) do %>
    <script 
-		class='stripe-button' src="https://checkout.stripe.com/checkout.js" 
-		data-label="Confirm and Pay with Card"
+	class='stripe-button' src="https://checkout.stripe.com/checkout.js" 
+	data-label="Confirm and Pay with Card"
    	data-allow-remember-me="false"
     data-key="<%= @stripe_btn_data[:key] %>"
     data-name="<%= @stripe_btn_data[:name] %>"

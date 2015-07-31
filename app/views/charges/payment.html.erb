@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="small-10 small-centered large-6 large-uncentered columns">
+
+	<p class="large-text">Payment Selection</p>
+	
+	<p>Pay Remaining Balance: <%= humanized_money_with_symbol(@invoice.balance) %></p>
+	<p>Pay Another Amount: <%= humanized_money_with_symbol(@invoice.payment) %></p>
+
+ </div>
+</div>
