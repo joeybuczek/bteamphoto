@@ -99,7 +99,7 @@
                 <br/>
               <% end %>
 
-              <span class="subdued-text"> <strong>Reviews:</strong> </span><br/><br/>
+              <span class="subdued-text"> <strong>Reviews:</strong> </span><br/>
               <span>Let us know how we did!</span>
               <% unless current_user.reviews.count < 1 %>
                 <% current_user.reviews.each do |review| %>
