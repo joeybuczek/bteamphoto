@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'reviews/create'
+
+  get 'reviews/update'
+
+  get 'reviews/destroy'
+
   get 'images/create'
 
   get 'images/edit'
@@ -47,6 +53,9 @@ Rails.application.routes.draw do
   # Images with json
   get 'gallery_images/:genre' => 'images#gallery_images'
   get 'add_image/:genre' => "images#add_image"
+
+  # Reviews
+  resources :reviews, only: [:create, :update, :destroy]
   
   
   

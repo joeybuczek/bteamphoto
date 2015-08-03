@@ -99,6 +99,33 @@
                 <br/>
               <% end %>
 
+              <span class="subdued-text"> <strong>Reviews:</strong> </span><br/><br/>
+              <span>Let us know how we did!</span>
+              <% unless current_user.reviews.count < 1 %>
+                <% current_user.reviews.each do |review| %>
+                  <% if review.genre == 'wedding' %>
+
+                    <%= form_for review do |f| %>
+                      <%= f.text_area :body %>
+                      <%= f.hidden_field :genre, value: 'wedding' %>
+                      <%= f.submit 'Update Review', class: 'button tiny radius secondary left' %>
+                    <% end %>
+
+                    <%= link_to "Delete Review", review, class: 'button tiny radius secondary clear margin-left-5', method: :delete %>
+
+                  <% end %>
+                <% end %>
+              <% else %>
+                <!-- New Review Form -->
+                <%= form_for @review do |f| %>
+
+                  <%= f.text_area :body, rows: 4 %>
+                  <%= f.hidden_field :genre, value: 'wedding' %>
+                  <%= f.submit 'Add Review', class: 'button tiny radius secondary' %>
+
+                <% end %>
+              <% end %>
+
             </td>
           </tr>
         </tbody>

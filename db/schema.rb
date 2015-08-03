@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150729170739) do
+ActiveRecord::Schema.define(version: 20150731172037) do
 
   create_table "collections", force: true do |t|
     t.string   "name"
@@ -65,6 +65,16 @@ ActiveRecord::Schema.define(version: 20150729170739) do
   end
 
   add_index "items", ["invoice_id"], name: "index_items_on_invoice_id"
+
+  create_table "reviews", force: true do |t|
+    t.text     "body"
+    t.string   "genre"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
 
   create_table "tax_rates", force: true do |t|
     t.string   "county"
