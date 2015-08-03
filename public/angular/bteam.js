@@ -11,6 +11,12 @@ angular
 		// add images controller
 		.controller('AddImageCtrl', ['AddImageFactory', AddImageCtrl])
 
+		// reviews controller
+		.controller('ReviewsCtrl', ['ReviewsFactory', ReviewsCtrl])
+
+		// reviews factory
+		.factory('ReviewsFactory', ['$resource', ReviewsFactory])
+
 		// resource query factory
 		.factory('ImageFactory', ['$resource', ImageFactory])
 
@@ -38,7 +44,8 @@ function IndexConfig($urlRouterProvider, $stateProvider, $resourceProvider) {
 			views: {
 				'gallery': { template: '<image-gallery genre="ctrl.genre"></image-gallery>' },
 				'genre_info': { templateUrl: '../templates/wedding_info.html' },
-				'about': { templateUrl: '../templates/wedding_about.html' }
+				'about': { templateUrl: '../templates/wedding_about.html' },
+				'review': { templateUrl: '../templates/reviews.html' }
 			},
 			data: { genre: 'wedding' }
 		})
@@ -48,7 +55,8 @@ function IndexConfig($urlRouterProvider, $stateProvider, $resourceProvider) {
 			views: {
 				'gallery': { template: '<image-gallery genre="ctrl.genre"></image-gallery>' },
 				'genre_info': { templateUrl: '../templates/children_info.html' },
-				'about': { templateUrl: '../templates/children_about.html' }
+				'about': { templateUrl: '../templates/children_about.html' },
+				'review': { templateUrl: '../templates/reviews.html' }
 			},
 			data: { genre: 'children' }
 		});
@@ -79,16 +87,51 @@ function AddImageCtrl(AddImageFactory) {
 
 };
 
+function ReviewsCtrl(ReviewsFactory) {
+	var self = this;
+	self.random_reviews = [];
+	self.index_array = [];
+	self.randNum = function(max) {
+		return Math.floor( Math.random() * max + 1 ) - 1;
+	};
+	self.create_index_array = function(max) {
+		// create array of two random index numbers
+		var a, b;
+		a = self.randNum(max);
+		do { b = self.randNum(max);	} while(b == a);
+		self.index_array = [a, b];
+	}
+	
+	self.get_reviews = function() {
+		ReviewsFactory.query({genre: 'wedding'}, function(data) {
+			// create random index numbers array using max review array length
+			self.create_index_array(data.reviews.length);
+			// assign two random reviews
+			self.random_reviews.push(data.reviews[ self.index_array[0] ]);
+			self.random_reviews.push(data.reviews[ self.index_array[1] ]);
+		});
+	};
+
+	// inits
+	self.get_reviews();
+
+	// next step: make this a <reviews></reviews> directive
+};
+
 
 // factories =============================================================
 function ImageFactory($resource) {
 	var images = $resource('/gallery_images/:genre', { genre: '@genre' }, { 'query': { method: 'GET', isArray: false } });
-
 	return images;
 };
 
 function AddImageFactory($resource) {
 	return $resource('/add_image/:genre');
+};
+
+function ReviewsFactory($resource) {
+	var reviews = $resource('/get_reviews/:genre', { genre: '@genre'}, { 'query': { method: 'GET', isArray: false } });
+	return reviews;
 };
 
 

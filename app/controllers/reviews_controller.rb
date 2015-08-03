@@ -19,6 +19,16 @@ class ReviewsController < ApplicationController
   	redirect_to request.referrer
   end
 
+  def reviews
+  	@reviews = Review.where( genre: params[:genre])
+  	reviews_array = [];
+  	@reviews.each do |review|
+  		reviews_array << review.body
+  	end
+
+  	render json: reviews_array
+  end
+
   private
 
   def review_params

@@ -56,6 +56,7 @@ Rails.application.routes.draw do
 
   # Reviews
   resources :reviews, only: [:create, :update, :destroy]
+  get 'get_reviews/:genre' => 'reviews#reviews'
   
   
   
