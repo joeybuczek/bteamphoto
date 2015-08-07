@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'webgalleries/create'
+
+  get 'webgalleries/update'
+
+  get 'webgalleries/destroy'
+
   root to: 'welcome#index'
   
   # Welcome controller routes
@@ -43,6 +49,9 @@ Rails.application.routes.draw do
   # Reviews
   resources :reviews, only: [:create, :update, :destroy]
   get 'get_reviews/:genre' => 'reviews#reviews'
+
+  # Web Galleries
+  resources :webgalleries, only: [:create, :update, :destroy]
   
   
   

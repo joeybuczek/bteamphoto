@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @user = User.new
+    @webgallery = Webgallery.new
   end
   
   def show

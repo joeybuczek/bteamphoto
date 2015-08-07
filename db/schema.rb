@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150731172037) do
+ActiveRecord::Schema.define(version: 20150807191756) do
 
   create_table "collections", force: true do |t|
     t.string   "name"
@@ -117,6 +117,16 @@ ActiveRecord::Schema.define(version: 20150731172037) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "webgalleries", force: true do |t|
+    t.string   "url"
+    t.string   "genre"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "webgalleries", ["user_id"], name: "index_webgalleries_on_user_id"
 
   create_table "weddings", force: true do |t|
     t.string   "title"
