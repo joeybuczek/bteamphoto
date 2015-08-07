@@ -22,7 +22,7 @@ There are currently two user roles: admin & client.
 
 **admin**
 
- - The admin user must be created on the backend through the console. There is only one admin user, which is able to create, edit, and delete clients through the site's interface. Additionally, all new 'events' to be photographed for the clients will be added by the admin user through the site as well.
+ - The admin user must be created on the backend through the console (or with the supplied seed.rb file). There is only one admin user, which is able to create, edit, and delete clients through the site's interface. Additionally, all new 'events' to be photographed for the clients will be added by the admin user through the site as well.
 
 **client**
 

@@ -12,7 +12,7 @@ angular
 		.controller('AddImageCtrl', ['AddImageFactory', AddImageCtrl])
 
 		// reviews controller
-		.controller('ReviewsCtrl', ['ReviewsFactory', ReviewsCtrl])
+		.controller('ReviewsCtrl', ['ReviewsFactory', '$state', ReviewsCtrl])
 
 		// reviews factory
 		.factory('ReviewsFactory', ['$resource', ReviewsFactory])
@@ -30,7 +30,10 @@ angular
 		.directive('phoneNumber', [PhoneNumber])
 
 		// image gallery directive
-		.directive('imageGallery', ['ImageFactory', ImageGallery]);
+		.directive('imageGallery', ['ImageFactory', ImageGallery])
+
+		// reviews directive
+		.directive('clientReviews', ['ReviewsFactory', ClientReviews]);
 
 
 // configuration ============================================================
@@ -84,16 +87,21 @@ function AddImageCtrl(AddImageFactory) {
 	self.add_image = function(name, genre) {
 		var new_image = AddImageFactory.get({ name: name, genre: genre });
 	};
-
 };
 
-function ReviewsCtrl(ReviewsFactory) {
+function ReviewsCtrl(ReviewsFactory, $state) {
+	// to be used in conjunction with <client-reviews> directive
+	// vars
 	var self = this;
 	self.random_reviews = [];
 	self.index_array = [];
+	self.genre = $state.current.data.genre;
+
+	// functions
 	self.randNum = function(max) {
 		return Math.floor( Math.random() * max + 1 ) - 1;
 	};
+
 	self.create_index_array = function(max) {
 		// create array of two random index numbers
 		var a, b;
@@ -103,19 +111,26 @@ function ReviewsCtrl(ReviewsFactory) {
 	}
 	
 	self.get_reviews = function() {
-		ReviewsFactory.query({genre: 'wedding'}, function(data) {
-			// create random index numbers array using max review array length
-			self.create_index_array(data.reviews.length);
-			// assign two random reviews
-			self.random_reviews.push(data.reviews[ self.index_array[0] ]);
-			self.random_reviews.push(data.reviews[ self.index_array[1] ]);
+		ReviewsFactory.query({genre: self.genre}, function(data) {
+			// check to see how many reviews exist for current genre
+			if (data.reviews.length > 1) {
+				// create random index numbers array using max review array length
+				self.create_index_array(data.reviews.length);
+				// assign two random reviews
+				self.random_reviews.push(data.reviews[ self.index_array[0] ]);
+				self.random_reviews.push(data.reviews[ self.index_array[1] ]);
+			} else {
+				// not enough reviews, show some defaults from past clients
+				self.random_reviews = [
+					"We are thrilled with our photographs! Thank you so much!",
+					"We will cherish our photographs forever!"
+				];
+			}
 		});
 	};
 
 	// inits
 	self.get_reviews();
-
-	// next step: make this a <reviews></reviews> directive
 };
 
 
@@ -196,4 +211,11 @@ function ImageGallery(ImageFactory) {
 	};
 };
 
-
+function ClientReviews(ReviewsFactory) {
+	return {
+		restrict: 'E',
+		scope: { review1: '@', review2: '@' },
+		template: '<div class="review-wrapper"><p><i>"{{review1}}"</i></p></div>' +
+			 				'<div class="review-wrapper"><p><i>"{{review2}}"</i></p></div>'
+	};
+};

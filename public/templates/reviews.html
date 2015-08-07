@@ -1,7 +1,6 @@
 <div ng-controller="ReviewsCtrl as r_ctrl">
 
-	<p>REVIEWS:</p>
-	<p><i>"{{ r_ctrl.random_reviews[0] }}"</i></p>
-	<p><i>"{{ r_ctrl.random_reviews[1] }}"</i></p>
+	<p class="medium-text">What our clients are saying:</p>
+	<client-reviews review1="{{ r_ctrl.random_reviews[0] }}" review2="{{ r_ctrl.random_reviews[1] }}"></client-reviews>
 
 </div>

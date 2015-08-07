@@ -34,7 +34,15 @@
 
  - The different views (wedding/portraits/etc) should be controlled via select box in the contact bar area, and all other relevant content on the page should change with it.
 
- **8. As a site developer, I should be able to reset my database by seeding it with proper admin user/rights.
+ **8. As a visitor of the site, I should be able to read reviews from past clients.
+
+ - I should be able to see two randomly selected reviews based on the current genre selected.
+
+ **9. As a client, I should be able to see links to any web galleries created by the business.
+
+ - I should be able to see a list of any web gallery links on my client landing page.
+
+ **10. As a site developer, I should be able to reset my database by seeding it with proper admin user/rights.
 
  - I should be able to run rake db:reset and have the default admin account set up with initial password, along with 'demo' user/data.
 

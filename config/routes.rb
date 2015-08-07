@@ -1,19 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'reviews/create'
-
-  get 'reviews/update'
-
-  get 'reviews/destroy'
-
-  get 'images/create'
-
-  get 'images/edit'
-
-  get 'images/update'
-
-  get 'images/destroy'
-
   root to: 'welcome#index'
   
   # Welcome controller routes

@@ -1,17 +1,17 @@
 @import "foundation_and_overrides";
 
-// Testing 123
+/* Testing 123 ========================================== */
 .test-wrap {
   border: 1px solid blue;
   background-color: grey;
 }
 
-// AngularJS 
+/* AngularJS ============================================ */
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
 
-// Font and text
+/* Font and text ======================================== */
 p, a, span, label, i, b, button, input {
   font-family: 'Raleway', sans-serif;
   color: indigo;
@@ -51,7 +51,7 @@ a:hover {
   text-align: center;
 }
 
-// Dimensions and Offsets
+/* Dimensions and Offsets =============================== */
 .clear-margin {
   margin: 0;
 }
@@ -81,7 +81,7 @@ a:hover {
   top: 15px;
 }
 
-// Tables
+/* Tables ============================================== */
 .table-width-100 {
   width: 100%;
 }
@@ -95,11 +95,11 @@ a:hover {
   width: 25%;
 }
 
-// Forms
+/* Forms =============================================== */
 input {
   border: 1px solid #C9B2DA;
   border-radius: 3px;
-  // height: 1.5em;
+  /* height: 1.5em; */
   padding: 3px;
   color: indigo;
 }
@@ -134,7 +134,21 @@ select {
   width: 200px;
 }
 
-// Index View
+/* Images ============================================== */
+.thumbnail {
+  width: 256px;
+}
+.thumbnail-tiny {
+  width: 100px;
+  margin: 2px 0;
+}
+.image-centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Index View ========================================== */
 #gallery-wrapper {
 
 }
@@ -203,13 +217,13 @@ email-address {
   left: 1%;
   padding-left: 20px;
   padding-right: 100px;
-  cursor: w-resize;
+  cursor: pointer;
 }
 .next-image {
   right: 1%;
   padding-left: 100px;
   padding-right: 20px;
-  cursor: e-resize;
+  cursor: pointer;
 }
 .arrow-icon {
   color: #eee;
@@ -222,28 +236,13 @@ email-address {
   width: 120px;
   font-size: 12px;
 }
-.section-genre {
-
+.review-wrapper {
+  padding: 20px;
+  margin: 5px;
+  border: 1px solid #eee;
 }
-.section-about {
-
-}
-.section-reviews {
-  
-}
-
-// Images
-.thumbnail {
-  width: 256px;
-}
-.thumbnail-tiny {
-  width: 100px;
-  margin: 2px 0;
-}
-.image-centered {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.review-wrapper p {
+  margin: 0;
 }
 
 
