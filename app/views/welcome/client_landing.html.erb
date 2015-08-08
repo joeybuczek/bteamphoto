@@ -12,6 +12,28 @@
     <% end %>
     
     <!-- <p>Web Galleries</p> -->
+    <% if @user.webgalleries.count > 0 %>
+
+      <table class="table-width-100">
+        <thead>
+          <tr>
+            <th class="table-header-width-100">Web Galleries</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <% @user.webgalleries.each do |webgallery| %>
+                <%= link_to webgallery.description, webgallery.url, target: "_blank" %><br/>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>  
+      </table>
+
+    <% end %>
+
+    <!-- Personal Information -->
 
     <table class="table-width-100">
       <thead>
@@ -46,6 +68,8 @@
         </tr>
       </tbody>
     </table>
+
+    <!-- Wedding Information -->
 
     <% unless current_user.wedding.nil? %>
     
@@ -98,6 +122,8 @@
                 <% end %>
                 <br/>
               <% end %>
+
+              <!-- Reviews -->
 
               <span class="subdued-text"> <strong>Reviews:</strong> </span><br/>
               <span>Let us know how we did!</span>

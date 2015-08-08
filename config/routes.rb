@@ -51,7 +51,7 @@ Rails.application.routes.draw do
   get 'get_reviews/:genre' => 'reviews#reviews'
 
   # Web Galleries
-  resources :webgalleries, only: [:create, :update, :destroy]
+  resources :webgalleries, only: [:create, :destroy]
   
   
   

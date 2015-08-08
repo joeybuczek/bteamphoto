@@ -52,25 +52,32 @@
                   <%= link_to 'Add Wedding', add_wedding_path(user) %>
                 <% else %>
                   <span><%= link_to 'View/Edit Wedding Details', user.wedding %></span><br/>
+
+                  <!-- Wedding Invoices -->
                   <% unless user.wedding.invoices.nil? %>
-                    <!-- Wedding Invoices -->
                     <br/><span><strong>Wedding Invoices:</strong></span><br/>
                     <% user.wedding.invoices.each do |invoice| %>
                       <%= link_to "#{invoice.description}", invoice %>
+
                       <!-- Determine if paid or balance due -->
                       <span class="label round info nudge-up-2"><%= invoice.balance > 0 ? "#{humanized_money_with_symbol(invoice.balance)}" : "Paid" %></span><br/>
                     <% end %>
+
                     <!-- Wedding Web Galleries -->
                     <br/><span><strong>Web Galleries:</strong></span><br/>
                     <% unless user.webgalleries.nil? %>
                       <% user.webgalleries.each do |webgallery| %>
-                        <%= link_to "#{webgallery.url}", webgallery.url %>
+                        <%= link_to webgallery.description, webgallery.url, target: "_blank" %>
                         <%= link_to "X", webgallery, method: :delete, class: 'label round nudge-up-2 secondary', data: { confirm: "Are you sure you want to delete this web gallery?" } %>
+                        <br/>
                       <% end %>
                     <% end %>
+
                     <!-- Add new web gallery -->
                     <%= form_for @webgallery do |f| %>
-                      <br/><span>URL:</span>
+                      <br/><span>Description:</span>
+                      <%= f.text_field :description %>
+                      <span>URL:</span>
                       <%= f.text_field :url %>
                       <%= f.hidden_field :user, value: user.id %>
                       <%= f.hidden_field :genre, value: 'wedding' %>
