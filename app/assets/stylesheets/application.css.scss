@@ -237,12 +237,19 @@ email-address {
   font-size: 12px;
 }
 .review-wrapper {
-  padding: 20px;
-  margin: 5px;
-  border: 1px solid #eee;
+  padding: 10px;
+  margin: 5px 0 0 0;
+  border: 1px solid #f4f4f4;
+  border-width: 0 2px 2px 0;
+  background-color: #fefefe;
 }
 .review-wrapper p {
   margin: 0;
+}
+.review-wrapper p i {
+  margin: 0;
+  font-size: 12pt;
+  color: #814DA8;
 }
 
 

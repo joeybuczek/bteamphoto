@@ -216,6 +216,6 @@ function ClientReviews(ReviewsFactory) {
 		restrict: 'E',
 		scope: { review1: '@', review2: '@' },
 		template: '<div class="review-wrapper"><p><i>"{{review1}}"</i></p></div>' +
-			 				'<div class="review-wrapper"><p><i>"{{review2}}"</i></p></div>'
+							'<div class="review-wrapper"><p><i>"{{review2}}"</i></p></div>'
 	};
 };
