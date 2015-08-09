@@ -33,13 +33,14 @@ default_user = User.new(
 )
 default_user.save
 
+
 # Collections - Change as needed
 coll1 = Collection.new(
 	name: 			'Wedding Gallery',
 	description: 	'Wedding Photographs',
 	genre: 			'wedding'
 )
-coll.save
+coll1.save
 coll2 = Collection.new(
 	name: 			'Baby and Children Portraiture',
 	description: 	'Portraits of babies and children',
@@ -47,16 +48,18 @@ coll2 = Collection.new(
 )
 coll2.save
 
+
 # Images - Change as needed
-img = coll1.images.build(name: 'LaBrake-1.jpg', description: 'Wedding Photography').save
-img = coll1.images.build(name: 'Katie-1.jpg',   description: 'Wedding Photography').save
-img = coll1.images.build(name: 'Paige-1.jpg',   description: 'Wedding Photography').save
-img = coll1.images.build(name: 'LaBrake-2.jpg', description: 'Wedding Photography').save
-img = coll1.images.build(name: 'Katie-2.jpg',   description: 'Wedding Photography').save
-img = coll1.images.build(name: 'Paige-2.jpg',   description: 'Wedding Photography').save
-img = coll1.images.build(name: 'LaBrake-3.jpg', description: 'Wedding Photography').save
-img = coll1.images.build(name: 'Katie-3.jpg',   description: 'Wedding Photography').save
-img = coll1.images.build(name: 'Paige-3.jpg',   description: 'Wedding Photography').save
+img = coll1.images.build(name: 'LaBrake-1.jpg', description: 'Wedding Photography', genre: 'wedding').save
+img = coll1.images.build(name: 'Katie-1.jpg',   description: 'Wedding Photography', genre: 'wedding').save
+img = coll1.images.build(name: 'Paige-1.jpg',   description: 'Wedding Photography', genre: 'wedding').save
+img = coll1.images.build(name: 'LaBrake-2.jpg', description: 'Wedding Photography', genre: 'wedding').save
+img = coll1.images.build(name: 'Katie-2.jpg',   description: 'Wedding Photography', genre: 'wedding').save
+img = coll1.images.build(name: 'Paige-2.jpg',   description: 'Wedding Photography', genre: 'wedding').save
+img = coll1.images.build(name: 'LaBrake-3.jpg', description: 'Wedding Photography', genre: 'wedding').save
+img = coll1.images.build(name: 'Katie-3.jpg',   description: 'Wedding Photography', genre: 'wedding').save
+img = coll1.images.build(name: 'Paige-3.jpg',   description: 'Wedding Photography', genre: 'wedding').save
+
 
 # Reviews - Change as needed
 default_user.reviews.build(
@@ -77,5 +80,11 @@ default_user.reviews.build(
 ).save
 
 
-# Misc
-
+# Verify
+puts "Admin user created: #{ User.first.role == 'admin' }"
+puts "Default user created: #{ User.last.role == 'client' }"
+puts "Wedding collection created: #{ Collection.first.genre == 'wedding' }"
+puts "Children collection created: #{ Collection.last.genre == 'children' }"
+puts "Wedding photos added: #{ Image.all.count }"
+puts "Wedding reviews created: #{ Review.where( genre: 'wedding' ).count }"
+puts "Children reviews created: #{ Review.where( genre: 'children' ).count }"
