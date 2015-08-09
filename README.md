@@ -3,6 +3,8 @@ by Joey Buczek: Owner, Photographer
 
 Built with Ruby 2.1.2, Rails 4.1.9, Foundation 4.5.4, AngularJS v1.3.16 (incl: ui-router, ngResource)
 
+To see the site in action, please visit: [https://bteamphoto.herokuapp.com](https://bteamphoto.herokuapp.com)
+
  ---
 
 **Site Name & Slogans**
