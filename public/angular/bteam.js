@@ -35,6 +35,11 @@ angular
 		// reviews directive
 		.directive('clientReviews', ['ReviewsFactory', ClientReviews]);
 
+angular
+	.module('RatingApp', [])
+
+		// rating controller
+		.controller('RatingCtrl', [RatingCtrl]);
 
 // configuration ============================================================
 function IndexConfig($urlRouterProvider, $stateProvider, $resourceProvider) {
@@ -133,6 +138,25 @@ function ReviewsCtrl(ReviewsFactory, $state) {
 	self.get_reviews();
 };
 
+function RatingCtrl() {
+	// vars
+	var self = this;
+	self.hidden_star = 0;
+
+	// functions
+	self.set_star_rating = function(star) {
+		self.hidden_star = star;
+	}
+
+	self.star_class = function(star) {
+		if (star <= self.hidden_star) {
+			return "star-class-on";
+		} else {
+			return "star-class-off";
+		};
+	};
+
+};
 
 // factories =============================================================
 function ImageFactory($resource) {

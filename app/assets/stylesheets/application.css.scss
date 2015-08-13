@@ -152,6 +152,22 @@ select {
   margin-right: auto;
 }
 
+/* Star Rating ========================================= */
+.star-rating {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  border: 1px solid grey;
+  text-align: center;
+  padding-top: 4px;
+}
+.star-class-off {
+  background-color: #fafafa;
+}
+.star-class-on {
+  background-color: #C9B2DA;
+}
+
 /* Index View ========================================== */
 #gallery-wrapper {
 

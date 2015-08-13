@@ -126,33 +126,50 @@
               <% end %>
 
               <!-- Reviews -->
+              <div ng-app="RatingApp">
+                <span class="subdued-text"> <strong>Reviews:</strong> </span><br/>
+                <span>Let us know how we did!</span>
+                <% unless current_user.reviews.count < 1 %>
+                  <% current_user.reviews.each do |review| %>
+                    <div ng-controller="RatingCtrl as star_ctrl">
+                      <% if review.genre == 'wedding' %>
 
-              <span class="subdued-text"> <strong>Reviews:</strong> </span><br/>
-              <span>Let us know how we did!</span>
-              <% unless current_user.reviews.count < 1 %>
-                <% current_user.reviews.each do |review| %>
-                  <% if review.genre == 'wedding' %>
+                        <%= form_for review do |f| %>
+                          <div class="star-rating {{ star_ctrl.star_class(1) }}" ng-click="star_ctrl.set_star_rating(1)">1</div>
+                          <div class="star-rating {{ star_ctrl.star_class(2) }}" ng-click="star_ctrl.set_star_rating(2)">2</div>
+                          <div class="star-rating {{ star_ctrl.star_class(3) }}" ng-click="star_ctrl.set_star_rating(3)">3</div>
+                          <div class="star-rating {{ star_ctrl.star_class(4) }}" ng-click="star_ctrl.set_star_rating(4)">4</div>
+                          <div class="star-rating {{ star_ctrl.star_class(5) }}" ng-click="star_ctrl.set_star_rating(5)">5</div>
+                          <%= f.text_area :body %>
+                          <%= f.hidden_field :genre, value: 'wedding' %>
+                          <p> {{ star_ctrl.hidden_star }} </p>
+                          <%= f.submit 'Update Review', class: 'button tiny radius secondary left' %>
+                        <% end %>
 
-                    <%= form_for review do |f| %>
-                      <%= f.text_area :body %>
-                      <%= f.hidden_field :genre, value: 'wedding' %>
-                      <%= f.submit 'Update Review', class: 'button tiny radius secondary left' %>
-                    <% end %>
+                        <%= link_to "Delete Review", review, class: 'button tiny radius secondary clear margin-left-5', method: :delete %>
 
-                    <%= link_to "Delete Review", review, class: 'button tiny radius secondary clear margin-left-5', method: :delete %>
-
+                      <% end %>
+                    </div>
                   <% end %>
-                <% end %>
-              <% else %>
-                <!-- New Review Form -->
-                <%= form_for @review do |f| %>
+                <% else %>
+                  <!-- New Review Form -->
+                  <div ng-controller="RatingCtrl as star_ctrl">
+                    <%= form_for @review do |f| %>
 
-                  <%= f.text_area :body, rows: 4 %>
-                  <%= f.hidden_field :genre, value: 'wedding' %>
-                  <%= f.submit 'Add Review', class: 'button tiny radius secondary' %>
+                      <div class="star-rating {{ star_ctrl.star_class(1) }}" ng-click="star_ctrl.set_star_rating(1)">1</div>
+                      <div class="star-rating {{ star_ctrl.star_class(2) }}" ng-click="star_ctrl.set_star_rating(2)">2</div>
+                      <div class="star-rating {{ star_ctrl.star_class(3) }}" ng-click="star_ctrl.set_star_rating(3)">3</div>
+                      <div class="star-rating {{ star_ctrl.star_class(4) }}" ng-click="star_ctrl.set_star_rating(4)">4</div>
+                      <div class="star-rating {{ star_ctrl.star_class(5) }}" ng-click="star_ctrl.set_star_rating(5)">5</div>
+                      <%= f.text_area :body, rows: 4 %>
+                      <%= f.hidden_field :genre, value: 'wedding' %>
+                      <p> {{ star_ctrl.hidden_star }} </p>
+                      <%= f.submit 'Add Review', class: 'button tiny radius secondary' %>
 
+                    <% end %>
+                  <div ng-controller="RatingCtrl as star_ctrl">
                 <% end %>
-              <% end %>
+              </div>
 
             </td>
           </tr>
