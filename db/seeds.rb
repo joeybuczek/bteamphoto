@@ -64,18 +64,22 @@ img = coll1.images.build(name: 'Paige-3.jpg',   description: 'Wedding Photograph
 # Reviews - Change as needed
 default_user.reviews.build(
 	genre: 'wedding',
+	rating: 5,
 	body:  'We are so happy with our beautiful photographs! We could not have asked for a better experience from Joey and Allie!'
 ).save
 default_user.reviews.build(
 	genre: 'wedding',
+	rating: 5,
 	body:  'Our photographs are fantastic! They are true professionals that made us feel at ease the entire day.'
 ).save
 default_user.reviews.build(
 	genre: 'children',
+	rating: 5,
 	body:  'We are thrilled with our photographs! Thank you so much!'
 ).save
 default_user.reviews.build(
 	genre: 'children',
+	rating: 5,
 	body:  'We will cherish our photographs forever!'
 ).save
 

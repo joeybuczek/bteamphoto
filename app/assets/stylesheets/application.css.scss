@@ -160,12 +160,39 @@ select {
   border: 1px solid grey;
   text-align: center;
   padding-top: 4px;
+  margin: 5px 0;
 }
 .star-class-off {
   background-color: #fafafa;
 }
 .star-class-on {
   background-color: #C9B2DA;
+}
+
+/* Reviews ============================================= */
+.review-wrapper {
+  padding: 10px;
+  margin: 5px 0 0 0;
+  border: 1px solid #f4f4f4;
+  border-width: 0 2px 2px 0;
+  background-color: #fefefe;
+}
+.review-wrapper p {
+  margin: 0;
+}
+.review-wrapper p i {
+  margin: 0;
+  font-size: 12pt;
+  color: #814DA8;
+}
+.client-review-wrapper {
+  padding: 5px;
+  border: 1px solid #f4f4f4;
+  border-width: 0 2px 2px 0;
+  background-color: #fefefe;
+}
+.review-button {
+  margin: 0;
 }
 
 /* Index View ========================================== */
@@ -257,22 +284,6 @@ email-address {
   width: 120px;
   font-size: 12px;
 }
-.review-wrapper {
-  padding: 10px;
-  margin: 5px 0 0 0;
-  border: 1px solid #f4f4f4;
-  border-width: 0 2px 2px 0;
-  background-color: #fefefe;
-}
-.review-wrapper p {
-  margin: 0;
-}
-.review-wrapper p i {
-  margin: 0;
-  font-size: 12pt;
-  color: #814DA8;
-}
-
 
 
 

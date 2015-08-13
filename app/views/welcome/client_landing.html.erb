@@ -4,7 +4,6 @@
     <p class="large-text">My Details</p>
     
     <!-- Invitations/Temporary Password Checker -->
-
     <% if @user.invitations.count > 0 %> 
       <div data-alert class="alert-box alert">
         <p class="temp-password-text">Temporary Password Alert: You can change your password from the menu above. This message will disappear after your password has been changed.</p>
@@ -13,7 +12,6 @@
     
     <!-- <p>Web Galleries</p> -->
     <% if @user.webgalleries.count > 0 %>
-
       <table class="table-width-100">
         <thead>
           <tr>
@@ -32,11 +30,9 @@
           </tr>
         </tbody>  
       </table>
-
     <% end %>
 
     <!-- Personal Information -->
-
     <table class="table-width-100">
       <thead>
         <tr>
@@ -71,8 +67,7 @@
       </tbody>
     </table>
 
-    <!-- Wedding Information -->
-
+    <!-- Wedding Section -->
     <% unless current_user.wedding.nil? %>
     
       <table class="table-width-100">
@@ -88,6 +83,7 @@
           <tr>
             <td>
 
+              <!-- Wedding Information -->
               <span class="subdued-text"> <strong>Bride and Groom:</strong> </span><br/>
               <span class="subdued-text"> <%= @wedding.bride %> </span><br/>
               <span class="subdued-text"> <%= @wedding.groom %> </span><br/><br/>
@@ -114,48 +110,43 @@
               <span class="subdued-text"> Location: <%= @wedding.location_reception %> </span><br/><br/>
 
               <span class="subdued-text"> <strong>Notes and Special Requests:</strong> </span><br/>
-              <span class="subdued-text"> <%= @wedding.notes %> </span><br/><br/>
+              <span class="subdued-text"> <%= @wedding.notes %> </span>
               
+              <hr/>
+
+              <!-- Wedding Invoices -->
               <% unless @wedding.invoices.nil? %>
                 <span class="subdued-text"> <strong>Wedding Invoices:</strong> </span><br/>
                 <% @wedding.invoices.each do |invoice| %>
                   <span class="subdued-text"> <%= link_to "#{invoice.description}", invoice %></span> 
                   <span class="label round info nudge-up-2"><%= invoice.balance > 0 ? "#{humanized_money_with_symbol(invoice.balance)}" : "Paid" %></span><br/>
                 <% end %>
-                <br/>
               <% end %>
 
-              <!-- Reviews -->
+              <hr/>
+
+              <!-- Wedding Review -->
               <div ng-app="RatingApp">
-                <span class="subdued-text"> <strong>Reviews:</strong> </span><br/>
-                <span>Let us know how we did!</span>
-                <% unless current_user.reviews.count < 1 %>
+
+                <span class="subdued-text"> <strong>Review:</strong> </span><br/>
+                <% unless current_user.reviews.where( genre: 'wedding').count < 1 %>
                   <% current_user.reviews.each do |review| %>
-                    <div ng-controller="RatingCtrl as star_ctrl">
-                      <% if review.genre == 'wedding' %>
-
-                        <%= form_for review do |f| %>
-                          <div class="star-rating {{ star_ctrl.star_class(1) }}" ng-click="star_ctrl.set_star_rating(1)">1</div>
-                          <div class="star-rating {{ star_ctrl.star_class(2) }}" ng-click="star_ctrl.set_star_rating(2)">2</div>
-                          <div class="star-rating {{ star_ctrl.star_class(3) }}" ng-click="star_ctrl.set_star_rating(3)">3</div>
-                          <div class="star-rating {{ star_ctrl.star_class(4) }}" ng-click="star_ctrl.set_star_rating(4)">4</div>
-                          <div class="star-rating {{ star_ctrl.star_class(5) }}" ng-click="star_ctrl.set_star_rating(5)">5</div>
-                          <%= f.text_area :body %>
-                          <%= f.hidden_field :genre, value: 'wedding' %>
-                          <p> {{ star_ctrl.hidden_star }} </p>
-                          <%= f.submit 'Update Review', class: 'button tiny radius secondary left' %>
+                    <% if review.genre == 'wedding' %>
+                      <div class="client-review-wrapper" ng-controller="RatingCtrl as star_ctrl">
+                        <% (review.rating).times do |star| %>
+                          <div class="star-rating star-class-on"><%= star + 1 %></div>
                         <% end %>
-
-                        <%= link_to "Delete Review", review, class: 'button tiny radius secondary clear margin-left-5', method: :delete %>
-
-                      <% end %>
-                    </div>
+                        <p><%= review.body %></p>
+                        <%= link_to "Delete Review", review, class: 'button tiny radius secondary clear margin-left-5 review-button', method: :delete %>
+                      </div>
+                    <% end %>
                   <% end %>
+
+                <!-- New Review Form -->
                 <% else %>
-                  <!-- New Review Form -->
+                  <span>Let us know how we did!</span>
                   <div ng-controller="RatingCtrl as star_ctrl">
                     <%= form_for @review do |f| %>
-
                       <div class="star-rating {{ star_ctrl.star_class(1) }}" ng-click="star_ctrl.set_star_rating(1)">1</div>
                       <div class="star-rating {{ star_ctrl.star_class(2) }}" ng-click="star_ctrl.set_star_rating(2)">2</div>
                       <div class="star-rating {{ star_ctrl.star_class(3) }}" ng-click="star_ctrl.set_star_rating(3)">3</div>
@@ -163,12 +154,12 @@
                       <div class="star-rating {{ star_ctrl.star_class(5) }}" ng-click="star_ctrl.set_star_rating(5)">5</div>
                       <%= f.text_area :body, rows: 4 %>
                       <%= f.hidden_field :genre, value: 'wedding' %>
-                      <p> {{ star_ctrl.hidden_star }} </p>
-                      <%= f.submit 'Add Review', class: 'button tiny radius secondary' %>
-
+                      <%= f.hidden_field :rating, value: '{{ star_ctrl.hidden_star }}' %>
+                      <%= f.submit 'Add Review', class: 'button tiny radius secondary review-button' %>
                     <% end %>
                   <div ng-controller="RatingCtrl as star_ctrl">
                 <% end %>
+
               </div>
 
             </td>
