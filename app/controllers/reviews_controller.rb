@@ -20,10 +20,12 @@ class ReviewsController < ApplicationController
   end
 
   def reviews
-  	@reviews = Review.where( genre: params[:genre])
-  	reviews_array = [];
+  	@reviews = Review.where( genre: params[:genre] )
+  	reviews_array = []
   	@reviews.each do |review|
-  		reviews_array << review.body
+  		if review.rating >= 4
+        reviews_array << review.body 
+      end
   	end
 
   	render json: reviews_array

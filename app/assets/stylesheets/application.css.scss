@@ -157,16 +157,18 @@ select {
   display: inline-block;
   height: 30px;
   width: 30px;
-  border: 1px solid grey;
+  border: 0px solid grey;
   text-align: center;
   padding-top: 4px;
   margin: 5px 0;
 }
 .star-class-off {
   background-color: #fafafa;
+  background: url(../star-off.png) 0 0 no-repeat;
 }
 .star-class-on {
   background-color: #C9B2DA;
+  background: url(../star-on.png) 0 0 no-repeat;
 }
 
 /* Reviews ============================================= */
@@ -284,8 +286,3 @@ email-address {
   width: 120px;
   font-size: 12px;
 }
-
-
-
-
-

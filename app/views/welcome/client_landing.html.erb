@@ -134,7 +134,7 @@
                     <% if review.genre == 'wedding' %>
                       <div class="client-review-wrapper" ng-controller="RatingCtrl as star_ctrl">
                         <% (review.rating).times do |star| %>
-                          <div class="star-rating star-class-on"><%= star + 1 %></div>
+                          <div class="star-rating star-class-on"></div>
                         <% end %>
                         <p><%= review.body %></p>
                         <%= link_to "Delete Review", review, class: 'button tiny radius secondary clear margin-left-5 review-button', method: :delete %>
@@ -147,11 +147,11 @@
                   <span>Let us know how we did!</span>
                   <div ng-controller="RatingCtrl as star_ctrl">
                     <%= form_for @review do |f| %>
-                      <div class="star-rating {{ star_ctrl.star_class(1) }}" ng-click="star_ctrl.set_star_rating(1)">1</div>
-                      <div class="star-rating {{ star_ctrl.star_class(2) }}" ng-click="star_ctrl.set_star_rating(2)">2</div>
-                      <div class="star-rating {{ star_ctrl.star_class(3) }}" ng-click="star_ctrl.set_star_rating(3)">3</div>
-                      <div class="star-rating {{ star_ctrl.star_class(4) }}" ng-click="star_ctrl.set_star_rating(4)">4</div>
-                      <div class="star-rating {{ star_ctrl.star_class(5) }}" ng-click="star_ctrl.set_star_rating(5)">5</div>
+                      <div class="star-rating {{ star_ctrl.star_class(1) }}" ng-click="star_ctrl.set_star_rating(1)"></div>
+                      <div class="star-rating {{ star_ctrl.star_class(2) }}" ng-click="star_ctrl.set_star_rating(2)"></div>
+                      <div class="star-rating {{ star_ctrl.star_class(3) }}" ng-click="star_ctrl.set_star_rating(3)"></div>
+                      <div class="star-rating {{ star_ctrl.star_class(4) }}" ng-click="star_ctrl.set_star_rating(4)"></div>
+                      <div class="star-rating {{ star_ctrl.star_class(5) }}" ng-click="star_ctrl.set_star_rating(5)"></div>
                       <%= f.text_area :body, rows: 4 %>
                       <%= f.hidden_field :genre, value: 'wedding' %>
                       <%= f.hidden_field :rating, value: '{{ star_ctrl.hidden_star }}' %>
