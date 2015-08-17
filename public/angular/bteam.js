@@ -50,7 +50,7 @@ function IndexConfig($urlRouterProvider, $stateProvider, $resourceProvider) {
 		.state('wedding', {
 			url: '/wedding',
 			views: {
-				'gallery': { template: '<image-gallery genre="ctrl.genre"></image-gallery>' },
+				'gallery': 	{ template: '<image-gallery genre="ctrl.genre"></image-gallery>' },
 				'genre_info': { templateUrl: '../templates/wedding_info.html' },
 				'about': { templateUrl: '../templates/wedding_about.html' },
 				'review': { templateUrl: '../templates/reviews.html' }
@@ -61,7 +61,7 @@ function IndexConfig($urlRouterProvider, $stateProvider, $resourceProvider) {
 		.state('children', {
 			url: '/children',
 			views: {
-				'gallery': { template: '<image-gallery genre="ctrl.genre"></image-gallery>' },
+				'gallery': 	{ template: '<image-gallery genre="ctrl.genre"></image-gallery>' },
 				'genre_info': { templateUrl: '../templates/children_info.html' },
 				'about': { templateUrl: '../templates/children_about.html' },
 				'review': { templateUrl: '../templates/reviews.html' }
