@@ -23,7 +23,7 @@
 
     <% @users.each do |user| %>
     
-      <% unless user.admin? %>
+      <% unless user.admin? %> <!-- Do not display admin account -->
         <table class="table-width-100">
           <thead>
             <tr>
@@ -46,11 +46,13 @@
                 <%= link_to "Edit Client Details", user %>    
               </td>
             </tr>
+
             <tr>
               <td>
                 <% if user.wedding.nil? %>
                   <%= link_to 'Add Wedding', add_wedding_path(user) %>
                 <% else %>
+                  <span><strong>Wedding Photography Event:</strong></span><br/>
                   <span><%= link_to 'View/Edit Wedding Details', user.wedding %></span><br/>
 
                   <!-- Wedding Invoices -->
@@ -62,31 +64,58 @@
                       <!-- Determine if paid or balance due -->
                       <span class="label round info nudge-up-2"><%= invoice.balance > 0 ? "#{humanized_money_with_symbol(invoice.balance)}" : "Paid" %></span><br/>
                     <% end %>
-
-                    <!-- Wedding Web Galleries -->
-                    <br/><span><strong>Web Galleries:</strong></span><br/>
-                    <% unless user.webgalleries.nil? %>
-                      <% user.webgalleries.each do |webgallery| %>
-                        <%= link_to webgallery.description, webgallery.url, target: "_blank" %>
-                        <%= link_to "X", webgallery, method: :delete, class: 'label round nudge-up-2 secondary', data: { confirm: "Are you sure you want to delete this web gallery?" } %>
-                        <br/>
-                      <% end %>
-                    <% end %>
-
-                    <!-- Add new web gallery -->
-                    <%= form_for @webgallery do |f| %>
-                      <br/><span>Description:</span>
-                      <%= f.text_field :description %>
-                      <span>URL:</span>
-                      <%= f.text_field :url %>
-                      <%= f.hidden_field :user, value: user.id %>
-                      <%= f.hidden_field :genre, value: 'wedding' %>
-                      <%= f.submit "Add Web Gallery", class: 'button tiny radius secondary' %>
-                    <% end %>
                   <% end %>
                 <% end %>   
               </td>
             </tr>
+
+            <tr>
+              <td>
+                <!-- Portrait Sessions -->
+                <%= link_to 'Add Portrait Session', new_portrait_path(user), class: 'button tiny radius secondary right' %>
+                <span><strong>Portrait Sessions:</strong></span><br/>
+                <% unless user.portraits.nil? %>
+                  <% user.portraits.each do |portrait| %>
+
+                    <%= link_to portrait.title, portrait %>
+                    <%= link_to "X", portrait, method: :delete, class: 'label round nudge-up-2 secondary', data: { confirm: "Are you sure you want to delete this portrait session?" } %>
+                    <br/>
+
+                  <% end %>
+                  <br/>
+                  
+                  <!-- Portrait Invoices -->
+                  <br/><span><strong>Portrait Invoices:</strong></span><br/>
+
+                <% end %>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <!-- Web Galleries -->
+                <span><strong>Web Galleries:</strong></span><br/>
+                <% unless user.webgalleries.nil? %>
+                  <% user.webgalleries.each do |webgallery| %>
+                    <%= link_to webgallery.description, webgallery.url, target: "_blank" %>
+                    <%= link_to "X", webgallery, method: :delete, class: 'label round nudge-up-2 secondary', data: { confirm: "Are you sure you want to delete this web gallery?" } %>
+                    <br/>
+                  <% end %>
+                <% end %>
+
+                <!-- Add new web gallery -->
+                <%= form_for @webgallery do |f| %>
+                  <br/><span>Description:</span>
+                  <%= f.text_field :description %>
+                  <span>URL:</span>
+                  <%= f.text_field :url %>
+                  <%= f.hidden_field :user, value: user.id %>
+                  <%= f.hidden_field :genre, value: 'wedding' %>
+                  <%= f.submit "Add Web Gallery", class: 'button tiny radius secondary right' %>
+                <% end %>
+              </td>
+            </tr>
+
           </tbody>
         </table>
       <% end %>

@@ -1,0 +1,19 @@
+
+  	<%= form_for portrait do |f| %>
+
+  		<span>Title:</span>
+  		<%= f.text_field :title, placeholder: 'ie: Baby Amia' %>
+
+  		<span>Description:</span>
+  		<%= f.text_field :description, placeholder: 'ie: Baby Portrait Session' %>
+
+  		<span>Genre:</span>
+  		<%= f.text_field :genre, placeholder: 'ie: children' %>
+
+  		<span>Notes:</span>
+  		<%= f.text_area :notes, placeholder: 'Enter notes about session, date to take place, etc.' %>
+
+  		<%= f.hidden_field :user_id, value: user.id %>
+  		<%= f.submit 'Submit', class: 'button small radius secondary' %>
+
+  	<% end %>

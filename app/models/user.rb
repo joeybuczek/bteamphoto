@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :invitations, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :webgalleries, dependent: :destroy
+  has_many :portraits, dependent: :destroy
   
   # User roles
   def admin?

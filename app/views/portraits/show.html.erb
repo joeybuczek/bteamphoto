@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="small-10 small-centered large-6 large-uncentered columns">
+
+  	<% if current_user.admin? %>
+
+  		<!-- Admin -->
+	  	<p class="large-text">Update Portrait Session</p>
+	  	<%= render partial: 'portraitform', locals: { portrait: @portrait, user: @user } %>
+
+  	<% else %>
+
+  		<!-- Client -->
+  		<p class="large-text"><%= @portrait.title %></p>
+  		<p class="subdued-text nudge-up-10"><%= @portrait.description %></p>
+  		<%= form_for @portrait do |f| %>
+  			<span>Notes/Details:</span>
+  			<%= f.text_area :notes, placeholder: 'Please enter any notes or details you have for us regarding this photo session.' %>
+  			<%= f.submit 'Update', class: 'button small radius secondary' %>
+  		<% end %>
+
+		<% end %>
+
+		<% if current_user.admin? %>
+	  	<%= link_to 'Back', users_path %>
+	  <% else %>
+	  	<%= link_to 'Back', client_landing_path %>
+	  <% end %>
+	</div>
+</div>

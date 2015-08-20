@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'webgalleries/create'
-
-  get 'webgalleries/update'
-
-  get 'webgalleries/destroy'
-
   root to: 'welcome#index'
   
   # Welcome controller routes
@@ -53,7 +47,9 @@ Rails.application.routes.draw do
   # Web Galleries
   resources :webgalleries, only: [:create, :destroy]
   
-  
+  # Portrait Sessions
+  resources :portraits, except: [:new]
+  get 'new_portrait/:id' => 'portraits#new', as: :new_portrait
   
   
   
