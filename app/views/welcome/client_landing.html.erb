@@ -169,5 +169,35 @@
     
     <% end %>
 
+    <!-- Portrait Section -->
+    <% unless current_user.portraits.nil? %>
+    
+      <table class="table-width-100">
+        <thead>
+          <tr>
+            <th class="table-header-width-100 clearfix">
+              <span>Portrait Sessions</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+
+              <% current_user.portraits.each do |portrait| %>
+
+                <%= link_to portrait.title, portrait %> - 
+                <%= link_to 'Invoice', '#' %>
+                <span class="label round info nudge-up-2">Paid</span>
+
+              <% end %>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    <% end %>
+
   </div>
 </div>
