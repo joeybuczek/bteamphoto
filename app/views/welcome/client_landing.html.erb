@@ -186,9 +186,16 @@
 
               <% current_user.portraits.each do |portrait| %>
 
-                <%= link_to portrait.title, portrait %> - 
+                <span class="subdued-text"> <strong>Session:</strong> </span><br/>
+                <%= link_to portrait.title, portrait %>
+                <br/>
+
+                <br/><span class="subdued-text"> <strong>Invoices:</strong> </span><br/>
                 <%= link_to 'Invoice', '#' %>
                 <span class="label round info nudge-up-2">Paid</span>
+                <br/>
+
+                <hr/>
 
               <% end %>
 
