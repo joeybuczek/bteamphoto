@@ -20,6 +20,24 @@
 
 		<% end %>
 
+		<!-- Invoices -->
+		<% if current_user.admin? %>
+			<hr/>
+			<p>Add Invoice</p>
+			<%= render partial: 'invoices/invoiceinfo', locals: { invoice: @invoice, invoiceable_id: @portrait.id, invoiceable_type: @portrait.genre } %>
+			<hr/>
+		<% else %>
+			<br/><span class="subdued-text nudge-up-10">Invoices:</span><br/>
+			<% @invoices.each_with_index do |invoice, index| %>
+				<% if index < @invoices.count %>
+					<%= link_to invoice.description, invoice %>
+					<span class="label round info nudge-up-2"><%= invoice.balance > 0 ? "#{humanized_money_with_symbol(invoice.balance)}" : "Paid" %></span><br/>
+				<% end %>
+			<% end %>
+			<br/><br/>
+		<% end %>
+
+
 		<% if current_user.admin? %>
 	  	<%= link_to 'Back', users_path %>
 	  <% else %>

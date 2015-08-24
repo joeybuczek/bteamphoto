@@ -15,6 +15,8 @@ class PortraitsController < ApplicationController
   def show
   	@portrait = Portrait.find(params[:id])
   	@user = current_user
+  	@invoice = @portrait.invoices.build
+  	@invoices = @portrait.invoices
   end
 
   def update
